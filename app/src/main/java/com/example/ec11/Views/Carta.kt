@@ -14,6 +14,8 @@ class Carta: View {
     private var mHeight : Float = 0f
     private var number: String= ""
     private var palo: String= ""
+    private var sam: String= "sam"
+
 
     constructor(context: Context, attrs: AttributeSet):super(context,attrs){
         number = 4.toString()
