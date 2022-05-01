@@ -6,5 +6,8 @@
     <declare-styleable name="Turnos">
         <attr name="NumTurno" format="integer"/>
     </declare-styleable>
+    <declare-styleable name="Carta">
+
+    </declare-styleable>
 
 </resources>
