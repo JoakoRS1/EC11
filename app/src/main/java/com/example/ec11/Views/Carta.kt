@@ -17,6 +17,7 @@ class Carta: View {
     var palo: String= "espada"
 
 
+
     constructor(context: Context, attrs: AttributeSet):super(context,attrs){
 
         val a : TypedArray = context.theme.obtainStyledAttributes(
