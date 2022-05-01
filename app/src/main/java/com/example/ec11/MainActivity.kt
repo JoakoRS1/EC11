@@ -15,6 +15,12 @@ class MainActivity : AppCompatActivity() {
 
     //class Carta_Clase (val numero: Int, val palo: String){}
     var Carta: Carta? = null
+    var jugador1: Jugador? = null
+    var jugador2: Jugador? = null
+    var jugador3: Jugador? = null
+    var jugadores = mutableListOf<Jugador>()
+    var Turno: Turnos? = null
+
     private var Mazo = mutableListOf<Carta>()
     private var SubMazo1 = mutableListOf<Carta>()
     private var SubMazo2 = mutableListOf<Carta>()
@@ -26,18 +32,17 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val CardView= findViewById<Carta>(R.id.carta)
-        val TvCartasenMazo= findViewById<TextView>(R.id.TVCartasEnMAzo)
+
+        /*val TvCartasenMazo= findViewById<TextView>(R.id.TVCartasEnMAzo)
         val TvJ1CartasMazo= findViewById<TextView>(R.id.J1Total)
         val TvJ2CartasMazo= findViewById<TextView>(R.id.J2Total)
-        val TvJ3CartasMazo= findViewById<TextView>(R.id.J3Total)
-
-
-
-
+        val TvJ3CartasMazo= findViewById<TextView>(R.id.J3Total)*/
 
         for (i in arrayOf("corazon","espada","trebol","diamante")){
             for (j in 1..13) {
@@ -45,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         shuffle(Mazo,52)
-        crearVistaCarta(CardView)
+
         for (i in 1..8){
             SubMazo1.add(robarCarta())
             J1CartasSubMazo++
@@ -55,10 +60,10 @@ class MainActivity : AppCompatActivity() {
             J3CartasSubMazo++
         }
 
-        TvCartasenMazo.text=CartasenMazo.toString()
+        /*TvCartasenMazo.text=CartasenMazo.toString()
         TvJ1CartasMazo.text=J1CartasSubMazo.toString()
         TvJ2CartasMazo.text=J2CartasSubMazo.toString()
-        TvJ3CartasMazo.text=J3CartasSubMazo.toString()
+        TvJ3CartasMazo.text=J3CartasSubMazo.toString()*/
 
 
     }
@@ -88,7 +93,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun unaCarta()  {
-        val TvJ1CartasMazo= findViewById<TextView>(R.id.J1Total)
+        /*val TvJ1CartasMazo= findViewById<TextView>(R.id.J1Total)
         val TvJ2CartasMazo= findViewById<TextView>(R.id.J2Total)
         val TvJ3CartasMazo= findViewById<TextView>(R.id.J3Total)
         if(J1CartasSubMazo == 1 ){
@@ -99,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         }
         if(J3CartasSubMazo== 1){
             TvJ3CartasMazo.text = "QUEDA UNA CARTA"
-        }
+        }*/
     }
 
 }
