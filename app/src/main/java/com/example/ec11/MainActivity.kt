@@ -59,6 +59,8 @@ class MainActivity : AppCompatActivity() {
         TvJ1CartasMazo.text=J1CartasSubMazo.toString()
         TvJ2CartasMazo.text=J2CartasSubMazo.toString()
         TvJ3CartasMazo.text=J3CartasSubMazo.toString()
+
+
     }
 
     fun shuffle(cards: MutableList<Carta>, n: Int) {
@@ -83,6 +85,21 @@ class MainActivity : AppCompatActivity() {
         var carta_repartida=Mazo.removeAt(0)
         CartasenMazo-=1
         return carta_repartida
+    }
+
+    fun unaCarta()  {
+        val TvJ1CartasMazo= findViewById<TextView>(R.id.J1Total)
+        val TvJ2CartasMazo= findViewById<TextView>(R.id.J2Total)
+        val TvJ3CartasMazo= findViewById<TextView>(R.id.J3Total)
+        if(J1CartasSubMazo == 1 ){
+            TvJ1CartasMazo.text = "QUEDA UNA CARTA"
+        }
+        if(J2CartasSubMazo == 1){
+            TvJ2CartasMazo.text = "QUEDA UNA CARTA"
+        }
+        if(J3CartasSubMazo== 1){
+            TvJ3CartasMazo.text = "QUEDA UNA CARTA"
+        }
     }
 
 }
