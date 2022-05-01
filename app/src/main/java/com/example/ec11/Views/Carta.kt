@@ -1,9 +1,10 @@
 package com.example.ec11.Views
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Size
+import android.view.MotionEvent
 import android.view.View
 import com.example.ec11.R
 
@@ -12,13 +13,19 @@ class Carta: View {
     private var mSize : Float = 0f
     private var mWidth : Float = 0f
     private var mHeight : Float = 0f
-    private var number: String= ""
-    private var palo: String= ""
+    var number: String= "12"
+    var palo: String= "espada"
 
 
-    constructor(context: Context, number: Int, palo: String ):super(context){
-        this.number = 4.toString()
-        this.palo="corazon"
+
+    constructor(context: Context, attrs: AttributeSet):super(context,attrs){
+
+        val a : TypedArray = context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.Carta,
+            0,
+            0)
+
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -38,7 +45,7 @@ class Carta: View {
     }
 
     private fun drawCarta(canvas: Canvas?){
-        mPaint.color= Color.BLACK
+        mPaint.color= Color.WHITE
         mPaint.style= Paint.Style.FILL_AND_STROKE
         var rect= RectF(mWidth*0.1f,mHeight*0.1f, mWidth*0.9f,mHeight*0.9f)
         canvas!!.drawRect(rect,mPaint)
@@ -55,10 +62,28 @@ class Carta: View {
 
         canvas!!.drawText(number,mWidth-mWidth/5f,mHeight-mHeight/4f+mWidth*0.2f,mPaint2)
     }
-
     private fun drawSymbols(canvas: Canvas?){
-        var foto=BitmapFactory.decodeResource(resources, R.drawable.ulima_futuro)
-        var rect= RectF(mWidth*0.1f,mHeight*0.4f, mWidth*0.9f,mHeight*0.6f)
-        canvas?.drawBitmap(foto!!,null,rect, Paint())
+
+        var symbol: Bitmap?= null
+
+        var rect = RectF(mWidth * 0.2f, mHeight * 0.3f, mWidth * 0.8f, mHeight * 0.65f)
+        if (palo=="corazon") {
+            symbol= BitmapFactory.decodeResource(resources, R.drawable.heart_cards)
+
+        }
+        else if (palo=="espada") {
+            symbol= BitmapFactory.decodeResource(resources, R.drawable.spades_cards)
+
+        }
+        else if (palo=="trebol") {
+            symbol= BitmapFactory.decodeResource(resources, R.drawable.trebol_cards)
+
+        }
+        else{
+            symbol= BitmapFactory.decodeResource(resources, R.drawable.diamond_cards)
+        }
+        canvas?.drawBitmap(symbol!!,null,rect, Paint())
     }
+
+
 }
