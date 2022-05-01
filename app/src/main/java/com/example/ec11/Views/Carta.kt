@@ -13,10 +13,13 @@ class Carta: View {
     private var mSize : Float = 0f
     private var mWidth : Float = 0f
     private var mHeight : Float = 0f
-    var number: String= "12"
+    var number: Int= 0
     var palo: String= "espada"
 
-
+    constructor(context: Context, numero : Int, paloT : String) : super (context){
+        number = numero;
+        palo = paloT;
+    }
 
     constructor(context: Context, attrs: AttributeSet):super(context,attrs){
 
@@ -51,12 +54,12 @@ class Carta: View {
         mPaint.textSize= mWidth*0.2f
         mPaint.textAlign= Paint.Align.LEFT
 
-        canvas!!.drawText(number,mWidth/5f,mHeight/4f,mPaint)
+        canvas!!.drawText(number.toString(),mWidth/5f,mHeight/4f,mPaint)
         var mPaint2=mPaint
 
         mPaint2.textAlign= Paint.Align.RIGHT
 
-        canvas!!.drawText(number,mWidth-mWidth/5f,mHeight-mHeight/4f+mWidth*0.2f,mPaint2)
+        canvas!!.drawText(number.toString(),mWidth-mWidth/5f,mHeight-mHeight/4f+mWidth*0.2f,mPaint2)
     }
     private fun drawSymbols(canvas: Canvas?){
 
