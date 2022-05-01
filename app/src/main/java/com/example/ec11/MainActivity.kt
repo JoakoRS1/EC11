@@ -3,7 +3,11 @@ package com.example.ec11
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
 import com.example.ec11.Views.Carta
@@ -28,15 +32,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val CardView= findViewById<Carta>(R.id.carta)
+
+        val listViewJ1= findViewById<ListView>(R.id.mazoJ1)
+
+        listViewJ1.adapter=MyCustomAdapter(this, SubMazo1)
+
         val TvCartasenMazo= findViewById<TextView>(R.id.TVCartasEnMAzo)
         val TvJ1CartasMazo= findViewById<TextView>(R.id.J1Total)
         val TvJ2CartasMazo= findViewById<TextView>(R.id.J2Total)
         val TvJ3CartasMazo= findViewById<TextView>(R.id.J3Total)
-
-
-
-
 
         for (i in arrayOf("corazon","espada","trebol","diamante")){
             for (j in 1..13) {
@@ -44,7 +48,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         shuffle(Mazo,52)
-        crearVistaCarta(CardView)
         for (i in 1..8){
             SubMazo1.add(robarCarta())
             J1CartasSubMazo++
@@ -75,8 +78,6 @@ class MainActivity : AppCompatActivity() {
         CardView.number=Mazo[3].numero.toString()
         CardView.palo=Mazo[3].palo
     }
-
-
     fun robarCarta (): Carta_Clase{
         //-1 Mazo principal
         var carta_repartida=Mazo.removeAt(0)
@@ -84,4 +85,34 @@ class MainActivity : AppCompatActivity() {
         return carta_repartida
     }
 
+    private class MyCustomAdapter(context:Context, SubMazo1: MutableList<Carta_Clase>): BaseAdapter(){
+
+        private val mContext:Context
+        private val  viewMazo1=SubMazo1
+
+        init{
+            mContext=context
+        }
+
+        override fun getCount(): Int {
+            return viewMazo1.size
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+        override fun getItem(p0: Int): Any {
+            return "TESTTT"
+        }
+
+        override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
+            val layoutInflater = LayoutInflater.from(mContext)
+            val rowMain= layoutInflater.inflate(R.layout.carta_mazo,p2,false)
+
+            val nameTextView= rowMain.findViewById<Carta>(R.id.carta)
+            nameTextView.number= viewMazo1[p0].numero.toString()
+            nameTextView.palo= viewMazo1[p0].palo
+            return rowMain
+        }
+    }
 }

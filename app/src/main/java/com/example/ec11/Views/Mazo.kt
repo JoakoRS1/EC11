@@ -31,12 +31,20 @@ class Mazo: View {
     }
     fun ordenarSubmazo(canvas: Canvas?){
         mPaint.color=Color.BLACK
+        mPaint.style=Paint.Style.STROKE
         var lastcard=0f
-        var cardWidth=mWidth/8
+        var cardWidth=mWidth/7
+        var BetweenCards=-mWidth*0.05f
 
-        for (i in 1..cantidad){
-            var rect= RectF(lastcard,mHeight*0.1f, lastcard+cardWidth,mHeight*0.3f)
-            lastcard=lastcard+cardWidth
+        var cardHeight=mHeight*0.15f
+
+        for (i in 0..cantidad-1){
+            var rect= RectF(
+                lastcard+BetweenCards,
+                BetweenCards,
+                lastcard+cardWidth,
+                cardHeight+BetweenCards)
+            lastcard+=cardWidth
             canvas!!.drawRect(rect,mPaint)
 
         }

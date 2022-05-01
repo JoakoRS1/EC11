@@ -20,11 +20,7 @@ class Carta: View {
 
     constructor(context: Context, attrs: AttributeSet):super(context,attrs){
 
-        val a : TypedArray = context.theme.obtainStyledAttributes(
-            attrs,
-            R.styleable.Carta,
-            0,
-            0)
+
 
     }
 
@@ -44,7 +40,7 @@ class Carta: View {
         drawSymbols(canvas!!)
     }
 
-    private fun drawCarta(canvas: Canvas?){
+    public fun drawCarta(canvas: Canvas?){
         mPaint.color= Color.WHITE
         mPaint.style= Paint.Style.FILL_AND_STROKE
         var rect= RectF(mWidth*0.1f,mHeight*0.1f, mWidth*0.9f,mHeight*0.9f)
