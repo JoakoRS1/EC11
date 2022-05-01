@@ -7,12 +7,13 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import com.example.ec11.MainActivity
 import com.example.ec11.R
 
 class Jugador: View {
     private val mPaint : Paint = Paint()
     private var mSize : Int = 0
-    var SubMazo: ArrayList<Carta> = ArrayList<Carta>();
+    public var SubMazo = mutableListOf<Carta>()
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs){
         val a: TypedArray = context.theme.obtainStyledAttributes(

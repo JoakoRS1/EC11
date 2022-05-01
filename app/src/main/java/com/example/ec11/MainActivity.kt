@@ -2,12 +2,14 @@ package com.example.ec11
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import java.util.*
+import com.example.ec11.Views.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    class Carta (val numero: Int, val palo: String){}
+    var carta : Carta? = null;
+
+    //class Carta (val numero: Int, val palo: String){}
     public var Mazo = mutableListOf<Carta>()
 
 
@@ -20,9 +22,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        for (i in arrayOf("cora","espada","trébol","cocos")){
+        for (i in arrayOf("corazon","espada","trebol","diamante")){
             for (j in 1..13) {
-                Mazo.add(Carta(j,i))
+                Mazo.add(Carta(this,j,i))
             }
         }
         shuffle(Mazo,52)

@@ -16,9 +16,9 @@ class Carta: View {
     private var palo: String= ""
 
 
-    constructor(context: Context, attrs: AttributeSet):super(context,attrs){
-        number = 4.toString()
-        palo="corazon"
+    constructor(context: Context, number: Int, palo: String ):super(context){
+        this.number = 4.toString()
+        this.palo="corazon"
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
