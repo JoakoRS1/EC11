@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -53,6 +54,8 @@ class MainActivity : AppCompatActivity() {
 
 
         imprimirTextos();
+        PasarTurno()
+        RobarCarta()
 
     }
 
@@ -96,6 +99,23 @@ class MainActivity : AppCompatActivity() {
         CartasenMazo-=1
         return carta_repartida
     }
+
+    fun PasarTurno(){
+        val bPasar = findViewById<Button>(R.id.bPasar);
+        bPasar.setOnClickListener{
+            val a= findViewById<TextView>(R.id.J3Total)//PRUEBA
+            a.text="PASAAA"//PRUEBA
+        }
+    }
+
+    fun RobarCarta(){
+        val bRobar = findViewById<Button>(R.id.bRobar);
+        bRobar.setOnClickListener{
+            val a= findViewById<TextView>(R.id.J3Total)//PRUEBA
+            a.text="ROBOO0"//PRUEBA
+        }
+    }
+
 
 
     fun imprimirTextos(){

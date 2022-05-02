@@ -18,6 +18,8 @@ class Carta: View {
     var palo: String= "espada"
     var anchoCarta:Float=0f
 
+    private var mListener: ((v: View) -> Unit)?= null
+
     constructor(context: Context, numero : Int, paloT : String) : super (context){
         number = numero;
         palo = paloT;
@@ -98,6 +100,18 @@ class Carta: View {
             symbol= BitmapFactory.decodeResource(resources, R.drawable.diamante)
         }
         canvas?.drawBitmap(symbol!!,null,rect, Paint())
+    }
+
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        if (mListener!=null){
+            mListener!!(this)
+            invalidate()}
+        return super.onTouchEvent(event)
+    }
+
+    fun setOnClickListener(listener: (v : View) -> Unit){
+        mListener = listener
     }
 
 
