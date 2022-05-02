@@ -61,10 +61,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-
-
-
     fun repartirInicial(){
         for (i in arrayOf("corazon","espada","trebol","diamante")){
             for (j in 1..13) {
@@ -101,6 +97,17 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = CustomAdapter(jugadores[0].subMazo)//CAMBIARRR
         recyclerView.adapter = adapter
+        adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+
+                var MazoJugador= jugadores[0].subMazo //Referencia a este mazo (J1)
+                Toast.makeText(
+                    this@MainActivity,
+                    "SELECCIONASTE LA CARTA"+
+                            MazoJugador[position].number+
+                            MazoJugador[position].palo, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
 
@@ -197,27 +204,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
-    class CustomAdapter(private val dataSet: MutableList<Carta>): RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
-        class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val textView: Carta=view.findViewById(R.id.carta)
-        }
-        override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-            // Create a new view, which defines the UI of the list item
-            val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.carta_mazo, viewGroup, false)
-            return ViewHolder(view)
-        }
-        // Replace the contents of a view (invoked by the layout manager)
-        override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-            // Get element from your dataset at this position and replace the
-            // contents of the view with that element
-            viewHolder.textView.number = dataSet[position].number
-            viewHolder.textView.palo = dataSet[position].palo
-        }
-        // Return the size of your dataset (invoked by the layout manager)
-        override fun getItemCount() = dataSet.size
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
