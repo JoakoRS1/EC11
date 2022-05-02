@@ -17,6 +17,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     //var Carta: Carta? = null
     var jugadores = mutableListOf<Jugador>()
+    var turno = 1
 
     private var Mazo = mutableListOf<Carta>()
     private var CartasenMazo: Int=52
@@ -34,21 +35,11 @@ class MainActivity : AppCompatActivity() {
         jugadores.add(jugador3)
 
         repartirInicial()
+        dibujarCartas()
 
     }
 
     fun DuranteJuego(){
-
-        val recyclerView = findViewById<RecyclerView> (R.id.my_recycler_view)
-
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        recyclerView.layoutManager = layoutManager
-
-        val adapter = CustomAdapter(jugadores[0].subMazo)//CAMBIARRR
-        recyclerView.adapter = adapter
-
-
 
 
         imprimirTextos();
@@ -56,6 +47,9 @@ class MainActivity : AppCompatActivity() {
         RobarCarta()
 
     }
+
+
+
 
 
     fun repartirInicial(){
@@ -73,7 +67,6 @@ class MainActivity : AppCompatActivity() {
         }   }
     }
 
-
     fun shuffle(cards: MutableList<Carta>, n: Int) {
         var card = cards
         val rand = Random()
@@ -85,6 +78,20 @@ class MainActivity : AppCompatActivity() {
             card[i] = temp
         }
     }
+
+    fun dibujarCartas(){
+        val recyclerView = findViewById<RecyclerView> (R.id.my_recycler_view)
+
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        recyclerView.layoutManager = layoutManager
+
+        val adapter = CustomAdapter(jugadores[0].subMazo)//CAMBIARRR
+        recyclerView.adapter = adapter
+    }
+
+
+
 
     /*fun crearVistaCarta(CardView: Carta){
         CardView.number= Mazo[3].number
@@ -99,9 +106,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun PasarTurno(){
+        var areaJug = findViewById<LinearLayout>(R.id.areaJugadorTurno)
         val bPasar = findViewById<Button>(R.id.bPasar);
         bPasar.setOnClickListener{
             val a= findViewById<TextView>(R.id.J3Total)//PRUEBA
+            areaJug.removeAllViews()
             a.text="PASAAA"//PRUEBA
         }
     }
