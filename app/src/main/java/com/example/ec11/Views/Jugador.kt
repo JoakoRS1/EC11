@@ -13,11 +13,13 @@ import com.example.ec11.R
 class Jugador: View {
     private val mPaint : Paint = Paint()
     private var mSize : Int = 0
-    public var SubMazo = mutableListOf<Carta>()
+    public var subMazo = mutableListOf<Carta>()
     var posi: Int =0
+    var cant: Int =0
 
-    constructor(context: Context, pos: Int) : super (context){
+    constructor(context: Context, pos: Int, cantidad:Int) : super (context){
         posi = pos;
+        cant = cantidad;
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs){
