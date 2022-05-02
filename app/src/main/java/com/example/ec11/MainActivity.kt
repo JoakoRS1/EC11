@@ -52,9 +52,6 @@ class MainActivity : AppCompatActivity() {
     fun DuranteJuego(){
 
         imprimirTextos()
-
-
-
         PasarTurno()
         RobarCarta()
         unaCarta()
@@ -145,6 +142,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
     /*fun crearVistaCarta(CardView: Carta){
         CardView.number= Mazo[3].number
         CardView.palo=Mazo[3].palo
@@ -219,9 +217,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"El jugador "+ num +" le queda una carta",Toast.LENGTH_SHORT).show()
             }
         }
-
-
-
     }
 
 }

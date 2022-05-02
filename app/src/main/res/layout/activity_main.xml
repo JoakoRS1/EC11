@@ -175,6 +175,8 @@
                 android:layout_gravity="bottom|start"
                 android:layout_weight="1"
                 android:text="TextView" />
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -230,22 +232,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:text="Total Cartas: " />
+
+                    <TextView
+                        android:id="@+id/TVCartasEnMAzo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:text="TextView" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:orientation="horizontal"
-                    android:text="Total Cartas: " />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/TVCartasEnMAzo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:orientation="horizontal"
-                    android:text="TextView" />
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="156dp"
+                        app:srcCompat="@drawable/deck" />
+                </LinearLayout>
+
 
             </LinearLayout>
         </LinearLayout>
