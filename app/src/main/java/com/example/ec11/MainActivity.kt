@@ -16,7 +16,6 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     //var Carta: Carta? = null
-
     var jugadores = mutableListOf<Jugador>()
 
     private var Mazo = mutableListOf<Carta>()
