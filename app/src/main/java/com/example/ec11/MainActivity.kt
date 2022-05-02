@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         jugadores.add(jugador2)
         jugadores.add(jugador3)
 
-        areamesa.addView(jugador1)
+
 
 
     }

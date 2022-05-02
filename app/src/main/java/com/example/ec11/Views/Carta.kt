@@ -34,7 +34,7 @@ class Carta: View {
         mWidth = View.MeasureSpec.getSize(widthMeasureSpec).toFloat()
         mHeight = View.MeasureSpec.getSize(heightMeasureSpec).toFloat()
         anchoCarta= mHeight*0.6f
-        setMeasuredDimension(200,heightMeasureSpec)
+        setMeasuredDimension(widthMeasureSpec,heightMeasureSpec)
     }
 
     override fun onDraw(canvas: Canvas?){
@@ -52,9 +52,6 @@ class Carta: View {
         paint2.style= Paint.Style.STROKE
         paint2.setStrokeWidth(6f);
         var rect= RectF(mWidth*0.1f,mHeight*0.1f, mWidth*0.9f,mHeight*0.9f)
-
-
-        var rect= RectF(mWidth*0.1f,mHeight*0.1f, mWidth*0.1f+anchoCarta,mHeight*0.9f)
         canvas!!.drawRect(rect,mPaint)
         canvas!!.drawRect(rect,paint2)
     }
@@ -75,6 +72,7 @@ class Carta: View {
         var symbol: Bitmap?= null
 
         var rect = RectF(mWidth * 0.1f, mHeight * 0.3f, mWidth * 0.1f+anchoCarta, mHeight * 0.65f)
+
         if (palo=="corazon") {
             symbol= BitmapFactory.decodeResource(resources, R.drawable.corazon)
         }
