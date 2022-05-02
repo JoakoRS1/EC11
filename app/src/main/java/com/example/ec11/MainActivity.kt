@@ -54,7 +54,6 @@ class MainActivity : AppCompatActivity() {
         imprimirTextos()
 
 
-
         PasarTurno()
         RobarCarta()
         unaCarta()
