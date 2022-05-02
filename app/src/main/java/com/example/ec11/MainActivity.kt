@@ -219,9 +219,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"El jugador "+ num +" le queda una carta",Toast.LENGTH_SHORT).show()
             }
         }
-
-
-
     }
 
 }
