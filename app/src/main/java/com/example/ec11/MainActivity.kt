@@ -2,6 +2,7 @@ package com.example.ec11
 
 import android.os.Bundle
 import android.os.VibrationAttributes
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private var Mazo = mutableListOf<Carta>()
+    private  var Mesa = mutableListOf<Carta>()
+    private var pos = 0
     private var CartasenMazo: Int=52
 
 
@@ -69,7 +72,12 @@ class MainActivity : AppCompatActivity() {
             for(j in 0..2) {
                 jugadores[j].subMazo.add(agregarCarta())
                 jugadores[j].cant++
-        }   }
+            }
+        }
+        Mesa.add(agregarCarta())
+        Log.i("MESA",Mesa[pos].number.toString() + " "+Mesa[pos].palo)
+        pos++
+
     }
 
     fun shuffle(cards: MutableList<Carta>, n: Int) {
@@ -125,16 +133,7 @@ class MainActivity : AppCompatActivity() {
                 aTurno.addLast(aux)
                 aTurno.addLast(aux2)
             }
-
-
         }
-
-
-
-
-
-
-
 
     }
 
