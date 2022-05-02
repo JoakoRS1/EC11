@@ -47,8 +47,13 @@ class Carta: View {
     public fun drawCarta(canvas: Canvas?){
         mPaint.color= Color.WHITE
         mPaint.style= Paint.Style.FILL_AND_STROKE
+        var paint2: Paint = Paint()
+        paint2.style= Paint.Style.STROKE
+        paint2.setStrokeWidth(6f);
         var rect= RectF(mWidth*0.1f,mHeight*0.1f, mWidth*0.9f,mHeight*0.9f)
+
         canvas!!.drawRect(rect,mPaint)
+        canvas!!.drawRect(rect,paint2)
     }
     private fun drawNumbers(canvas: Canvas?){
         mPaint.color= Color.RED

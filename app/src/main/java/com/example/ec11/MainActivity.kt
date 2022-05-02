@@ -5,16 +5,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ec11.Views.Carta
+import com.example.ec11.Views.*
 import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
 
+
+    var Carta: Carta? = null
+
+
     class Carta_Clase (val numero: Int, val palo: String){}
+    var jugadores = mutableListOf<Jugador>()
     private var Mazo = mutableListOf<Carta_Clase>()
     private var SubMazo1 = mutableListOf<Carta_Clase>()
     private var SubMazo2 = mutableListOf<Carta_Clase>()
@@ -26,11 +32,34 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    fun InicializaJuego(){
+        var jugador1 = Jugador(this,1)
+        var jugador2 = Jugador(this,2)
+        var jugador3 = Jugador(this,3)
+
+        var areamesa = findViewById<LinearLayout>(R.id.areaCartaMesa);
+
+        jugadores.add(jugador1)
+        jugadores.add(jugador2)
+        jugadores.add(jugador3)
+
+        areamesa.addView(jugador1)
+
+
+    }
+
+    fun DuranteJuego(){
+
+    }
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val recyclerView = findViewById<RecyclerView> (R.id.my_recycler_view)
+
 
 
 
