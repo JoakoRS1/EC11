@@ -122,14 +122,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="30dp"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/deck" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/areaJugadorNoTurno2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="30dp"
+                    app:srcCompat="@drawable/deck" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -179,7 +198,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="25dp"
+                    app:srcCompat="@drawable/deck" />
+            </LinearLayout>
         </LinearLayout>
 
 

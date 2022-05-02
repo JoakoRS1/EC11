@@ -33,14 +33,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val listViewJ1= findViewById<ListView>(R.id.mazoJ1)
+        /*val listViewJ1= findViewById<ListView>(R.id.mazoJ1)
 
         listViewJ1.adapter=MyCustomAdapter(this, SubMazo1)
 
         val TvCartasenMazo= findViewById<TextView>(R.id.TVCartasEnMAzo)
         val TvJ1CartasMazo= findViewById<TextView>(R.id.J1Total)
         val TvJ2CartasMazo= findViewById<TextView>(R.id.J2Total)
-        val TvJ3CartasMazo= findViewById<TextView>(R.id.J3Total)
+        val TvJ3CartasMazo= findViewById<TextView>(R.id.J3Total)*/
 
         for (i in arrayOf("corazon","espada","trebol","diamante")){
             for (j in 1..13) {
@@ -57,10 +57,10 @@ class MainActivity : AppCompatActivity() {
             J3CartasSubMazo++
         }
 
-        TvCartasenMazo.text=CartasenMazo.toString()
+        /*TvCartasenMazo.text=CartasenMazo.toString()
         TvJ1CartasMazo.text=J1CartasSubMazo.toString()
         TvJ2CartasMazo.text=J2CartasSubMazo.toString()
-        TvJ3CartasMazo.text=J3CartasSubMazo.toString()
+        TvJ3CartasMazo.text=J3CartasSubMazo.toString()*/
     }
 
     fun shuffle(cards: MutableList<Carta_Clase>, n: Int) {
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     fun crearVistaCarta(CardView: Carta){
-        CardView.number=Mazo[3].numero.toString()
+        CardView.number=Mazo[3].numero
         CardView.palo=Mazo[3].palo
     }
     fun robarCarta (): Carta_Clase{
@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity() {
             val rowMain= layoutInflater.inflate(R.layout.carta_mazo,p2,false)
 
             val nameTextView= rowMain.findViewById<Carta>(R.id.carta)
-            nameTextView.number= viewMazo1[p0].numero.toString()
+            nameTextView.number= viewMazo1[p0].numero
             nameTextView.palo= viewMazo1[p0].palo
             return rowMain
         }

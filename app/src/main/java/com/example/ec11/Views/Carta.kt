@@ -41,6 +41,7 @@ class Carta: View {
         drawCarta(canvas!!)
         drawNumbers(canvas!!)
         drawSymbols(canvas!!)
+
     }
 
     public fun drawCarta(canvas: Canvas?){
@@ -67,19 +68,19 @@ class Carta: View {
 
         var rect = RectF(mWidth * 0.2f, mHeight * 0.3f, mWidth * 0.8f, mHeight * 0.65f)
         if (palo=="corazon") {
-            symbol= BitmapFactory.decodeResource(resources, R.drawable.heart_cards)
+            symbol= BitmapFactory.decodeResource(resources, R.drawable.corazon)
 
         }
         else if (palo=="espada") {
-            symbol= BitmapFactory.decodeResource(resources, R.drawable.spades_cards)
+            symbol= BitmapFactory.decodeResource(resources, R.drawable.espada)
 
         }
         else if (palo=="trebol") {
-            symbol= BitmapFactory.decodeResource(resources, R.drawable.trebol_cards)
+            symbol= BitmapFactory.decodeResource(resources, R.drawable.trebol)
 
         }
         else{
-            symbol= BitmapFactory.decodeResource(resources, R.drawable.diamond_cards)
+            symbol= BitmapFactory.decodeResource(resources, R.drawable.diamante)
         }
         canvas?.drawBitmap(symbol!!,null,rect, Paint())
     }
