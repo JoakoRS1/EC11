@@ -15,6 +15,7 @@ class Carta: View {
     private var mHeight : Float = 0f
     var number: Int= 0
     var palo: String= "espada"
+    var anchoCarta:Float=0f
 
     constructor(context: Context, numero : Int, paloT : String) : super (context){
         number = numero;
