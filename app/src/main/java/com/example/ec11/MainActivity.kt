@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     var jugadores = mutableListOf<Jugador>()
     var aTurno = CircularIntArray()
 
+    var adapter = CustomAdapter(mutableListOf<Carta>())
 
     private var Mazo = mutableListOf<Carta>()
     private  var Mesa = mutableListOf<Carta>()
@@ -101,9 +102,19 @@ class MainActivity : AppCompatActivity() {
 
     fun dibujarCartas(){
 
-        val adapter = CustomAdapter(jugadores[aTurno[0]].subMazo)//CAMBIARRR
+        adapter = CustomAdapter(jugadores[aTurno[0]].subMazo)
         llamarRecycler().adapter = adapter
 
+
+        adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+            }
+        })
+    }
+
+    fun cartaSeleccion():Carta?{
+
+        var cartaSelec: Carta? = null
 
         adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
@@ -116,6 +127,9 @@ class MainActivity : AppCompatActivity() {
                             MazoJugador[position].palo, Toast.LENGTH_SHORT).show()
             }
         })
+
+
+        return cartaSelec
     }
 
 
