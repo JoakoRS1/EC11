@@ -1,6 +1,7 @@
 package com.example.ec11
 
 import android.os.Bundle
+import android.os.VibrationAttributes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,16 +9,20 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.collection.CircularIntArray
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ec11.Views.*
+import org.w3c.dom.Text
 import java.util.*
+import java.util.concurrent.CancellationException
 
 
 class MainActivity : AppCompatActivity() {
     //var Carta: Carta? = null
     var jugadores = mutableListOf<Jugador>()
-    var turno = 1
+    var aTurno = CircularIntArray()
+
 
     private var Mazo = mutableListOf<Carta>()
     private var CartasenMazo: Int=52
@@ -28,11 +33,15 @@ class MainActivity : AppCompatActivity() {
         var jugador2 = Jugador(this,2,0)
         var jugador3 = Jugador(this,3,0)
 
-        var areamesa = findViewById<LinearLayout>(R.id.areaCartaMesa);
+
 
         jugadores.add(jugador1)
         jugadores.add(jugador2)
         jugadores.add(jugador3)
+
+        aTurno.addLast(0)
+        aTurno.addLast(1)
+        aTurno.addLast(2)
 
         repartirInicial()
         dibujarCartas()
@@ -41,8 +50,10 @@ class MainActivity : AppCompatActivity() {
 
     fun DuranteJuego(){
 
+        imprimirTextos()
 
-        imprimirTextos();
+
+
         PasarTurno()
         RobarCarta()
 
@@ -62,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
         for (i in 1..8){
             for(j in 0..2) {
-                jugadores[j].subMazo.add(robarCarta())
+                jugadores[j].subMazo.add(agregarCarta())
                 jugadores[j].cant++
         }   }
     }
@@ -91,6 +102,39 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    fun tirarCarta(cartaA: Carta,cartaM: Carta){
+
+
+        //leer carta en mesa
+
+        var cartaPos = findViewById<RecyclerView>(R.id.my_recycler_view)
+
+
+        if (cartaM.number == cartaA.number){
+            jugadores[aTurno[0]].subMazo.remove(cartaA)
+            //agregar a la mesa
+
+            if (cartaA.number== 11){
+                var aux = aTurno[0]
+                var aux2 = aTurno[1]
+                aTurno.removeFromStart(2)
+                aTurno.addLast(aux)
+                aTurno.addLast(aux2)
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+    }
+
+
 
 
     /*fun crearVistaCarta(CardView: Carta){
@@ -98,7 +142,7 @@ class MainActivity : AppCompatActivity() {
         CardView.palo=Mazo[3].palo
     }*/
 
-    fun robarCarta (): Carta{
+    fun agregarCarta (): Carta{
         //-1 Mazo principal
         var carta_repartida=Mazo.removeAt(0)
         CartasenMazo-=1
@@ -109,17 +153,28 @@ class MainActivity : AppCompatActivity() {
         var areaJug = findViewById<LinearLayout>(R.id.areaJugadorTurno)
         val bPasar = findViewById<Button>(R.id.bPasar);
         bPasar.setOnClickListener{
-            val a= findViewById<TextView>(R.id.J3Total)//PRUEBA
+            val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
             areaJug.removeAllViews()
             a.text="PASAAA"//PRUEBA
+
+
+            var aux = aTurno[0]
+            aTurno.removeFromStart(1)
+            aTurno.addLast(aux)
+
+            imprimirTextos()
         }
     }
 
     fun RobarCarta(){
         val bRobar = findViewById<Button>(R.id.bRobar);
         bRobar.setOnClickListener{
-            val a= findViewById<TextView>(R.id.J3Total)//PRUEBA
-            a.text="ROBOO0"//PRUEBA
+            val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
+
+            jugadores[aTurno[0]].subMazo.add(agregarCarta())
+            jugadores[aTurno[0]].cant++
+
+            imprimirTextos()
         }
     }
 
@@ -127,15 +182,15 @@ class MainActivity : AppCompatActivity() {
 
     fun imprimirTextos(){
         val TvCartasenMazo= findViewById<TextView>(R.id.TVCartasEnMAzo)
-        val TvJ1CartasMazo= findViewById<TextView>(R.id.J1Total)
-        val TvJ2CartasMazo= findViewById<TextView>(R.id.J2Total)
-        val TvJ3CartasMazo= findViewById<TextView>(R.id.J3Total)
-
-
         TvCartasenMazo.text=CartasenMazo.toString()
-        TvJ1CartasMazo.text=jugadores[0].cant.toString()
-        TvJ2CartasMazo.text=jugadores[1].cant.toString()
-        TvJ3CartasMazo.text=jugadores[2].cant.toString()
+
+        val JActual= findViewById<TextView>(R.id.JActualTotal)
+        val JSiguiente= findViewById<TextView>(R.id.JSigSigTotal)
+        val JSiguienteSig= findViewById<TextView>(R.id.JSigTotal)
+
+        JActual.text=jugadores[aTurno[0]].cant.toString()
+        JSiguiente.text=jugadores[aTurno[1]].cant.toString()
+        JSiguienteSig.text=jugadores[aTurno[2]].cant.toString()
     }
 
 

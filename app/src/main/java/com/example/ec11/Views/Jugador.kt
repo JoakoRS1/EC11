@@ -41,21 +41,4 @@ class Jugador: View {
     }
 
 
-    override fun onDraw(canvas: Canvas?){
-        super.onDraw(canvas)
-        numJugador(canvas!!)
-    }
-
-    private fun numJugador(canvas: Canvas){
-
-        mPaint.color= Color.RED
-        mPaint.textSize= mSize/11f
-        //mPaint.textAlign= Paint.Align.LEFT
-
-        canvas.drawText("1",mSize / 20f, 5 * mSize / 8f,mPaint)
-
-    }
-
-
-
 }
