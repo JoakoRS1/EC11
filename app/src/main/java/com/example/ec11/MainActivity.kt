@@ -64,12 +64,12 @@ class MainActivity : AppCompatActivity() {
         }
         shuffle(Mazo,52)
 
-        for (i in 1..8){
-            for(j in 0..2) {
+        for(j in 0..2) {
+            for (i in 1..8){
                 jugadores[j].subMazo.add(agregarCarta())
                 jugadores[j].cant++
-            }
-        }
+           }
+       }
         Mesa.add(agregarCarta())
         Log.i("MESA",Mesa[pos].number.toString() + " "+Mesa[pos].palo)
         pos++
@@ -88,24 +88,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun dibujarCartas(){
+
+    fun llamarRecycler(): RecyclerView{
         val recyclerView = findViewById<RecyclerView> (R.id.my_recycler_view)
-        val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
+        //val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
 
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         recyclerView.layoutManager = layoutManager
+        return recyclerView
+    }
 
+    fun dibujarCartas(){
 
-
-        val adapter = CustomAdapter(jugadores[0].subMazo)//CAMBIARRR
-        recyclerView.adapter = adapter
+        val adapter = CustomAdapter(jugadores[aTurno[0]].subMazo)//CAMBIARRR
+        llamarRecycler().adapter = adapter
 
 
         adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
 
-                var MazoJugador= jugadores[0].subMazo //Referencia a este mazo (J1)
+                var MazoJugador= jugadores[aTurno[0]].subMazo //Referencia a este mazo (J1)
                 Toast.makeText(
                     this@MainActivity,
                     "SELECCIONASTE LA CARTA"+
@@ -159,7 +162,7 @@ class MainActivity : AppCompatActivity() {
         val bPasar = findViewById<Button>(R.id.bPasar);
         bPasar.setOnClickListener{
             val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
-            areaJug.removeAllViews()
+            //areaJug.removeAllViews()
             a.text="PASAAA"//PRUEBA
 
 
@@ -167,6 +170,7 @@ class MainActivity : AppCompatActivity() {
             aTurno.removeFromStart(1)
             aTurno.addLast(aux)
 
+            dibujarCartas()
             imprimirTextos()
         }
     }
@@ -208,7 +212,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun unaCarta()  {
         for(i in 0..2){
-            if(jugadores[i].cant++ == 1){
+            if(jugadores[i].cant == 1){
                 val num = i +1
                 Toast.makeText(applicationContext,"El jugador "+ num +" le queda una carta",Toast.LENGTH_SHORT).show()
             }
