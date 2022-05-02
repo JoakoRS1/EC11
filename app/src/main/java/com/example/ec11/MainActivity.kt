@@ -1,21 +1,17 @@
 package com.example.ec11
 
 import android.os.Bundle
-import android.os.VibrationAttributes
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.collection.CircularIntArray
+import androidx.core.view.drawToBitmap
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ec11.Views.*
-import org.w3c.dom.Text
 import java.util.*
 import java.util.concurrent.CancellationException
 
@@ -94,13 +90,18 @@ class MainActivity : AppCompatActivity() {
 
     fun dibujarCartas(){
         val recyclerView = findViewById<RecyclerView> (R.id.my_recycler_view)
+        val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
 
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         recyclerView.layoutManager = layoutManager
 
+
+
         val adapter = CustomAdapter(jugadores[0].subMazo)//CAMBIARRR
         recyclerView.adapter = adapter
+
+
         adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
 
