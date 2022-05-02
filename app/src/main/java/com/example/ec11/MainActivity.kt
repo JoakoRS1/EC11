@@ -49,10 +49,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-
-
-
     fun repartirInicial(){
         for (i in arrayOf("corazon","espada","trebol","diamante")){
             for (j in 1..13) {
