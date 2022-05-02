@@ -113,7 +113,6 @@ class MainActivity : AppCompatActivity() {
 
     fun tirarCarta(cartaA: Carta,cartaM: Carta){
 
-
         //leer carta en mesa
 
         var cartaPos = findViewById<RecyclerView>(R.id.my_recycler_view)
