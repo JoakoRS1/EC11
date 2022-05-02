@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -88,6 +89,17 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = CustomAdapter(jugadores[0].subMazo)//CAMBIARRR
         recyclerView.adapter = adapter
+        adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+
+                var MazoJugador= jugadores[0].subMazo //Referencia a este mazo (J1)
+                Toast.makeText(
+                    this@MainActivity,
+                    "SELECCIONASTE LA CARTA"+
+                            MazoJugador[position].number+
+                            MazoJugador[position].palo, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
 
@@ -124,7 +136,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     fun imprimirTextos(){
         val TvCartasenMazo= findViewById<TextView>(R.id.TVCartasEnMAzo)
         val TvJ1CartasMazo= findViewById<TextView>(R.id.J1Total)
@@ -136,30 +147,6 @@ class MainActivity : AppCompatActivity() {
         TvJ1CartasMazo.text=jugadores[0].cant.toString()
         TvJ2CartasMazo.text=jugadores[1].cant.toString()
         TvJ3CartasMazo.text=jugadores[2].cant.toString()
-    }
-
-
-
-
-
-    class CustomAdapter(private val dataSet: MutableList<Carta>): RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
-        class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val textView: Carta=view.findViewById(R.id.carta)
-        }
-        override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-            // Create a new view, which defines the UI of the list item
-            val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.carta_mazo, viewGroup, false)
-            return ViewHolder(view)
-        }
-        // Replace the contents of a view (invoked by the layout manager)
-        override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-            // Get element from your dataset at this position and replace the
-            // contents of the view with that element
-            viewHolder.textView.number = dataSet[position].number
-            viewHolder.textView.palo = dataSet[position].palo
-        }
-        // Return the size of your dataset (invoked by the layout manager)
-        override fun getItemCount() = dataSet.size
     }
 
 
