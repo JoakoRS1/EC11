@@ -102,6 +102,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
     /*fun crearVistaCarta(CardView: Carta){
         CardView.number= Mazo[3].number
         CardView.palo=Mazo[3].palo
