@@ -14,6 +14,11 @@ class Jugador: View {
     private val mPaint : Paint = Paint()
     private var mSize : Int = 0
     public var SubMazo = mutableListOf<Carta>()
+    var posi: Int =0
+
+    constructor(context: Context, pos: Int) : super (context){
+        posi = pos;
+    }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs){
         val a: TypedArray = context.theme.obtainStyledAttributes(
