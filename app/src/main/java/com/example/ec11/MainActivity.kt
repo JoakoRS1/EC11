@@ -1,19 +1,16 @@
 package com.example.ec11
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ListView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.example.ec11.Views.Carta
-import org.w3c.dom.Text
 import java.util.*
-import java.util.jar.Attributes
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,9 +30,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val listViewJ1= findViewById<ListView>(R.id.mazoJ1)
+        val recyclerView = findViewById<RecyclerView> (R.id.my_recycler_view)
 
-        listViewJ1.adapter=MyCustomAdapter(this, SubMazo1)
+
 
         val TvCartasenMazo= findViewById<TextView>(R.id.TVCartasEnMAzo)
         val TvJ1CartasMazo= findViewById<TextView>(R.id.J1Total)
@@ -56,7 +53,8 @@ class MainActivity : AppCompatActivity() {
             SubMazo3.add(robarCarta())
             J3CartasSubMazo++
         }
-
+        val adapter = CustomAdapter(SubMazo1)
+        recyclerView.adapter = adapter
         TvCartasenMazo.text=CartasenMazo.toString()
         TvJ1CartasMazo.text=J1CartasSubMazo.toString()
         TvJ2CartasMazo.text=J2CartasSubMazo.toString()
@@ -75,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     fun crearVistaCarta(CardView: Carta){
-        CardView.number=Mazo[3].numero.toString()
+        CardView.number= Mazo[3].numero
         CardView.palo=Mazo[3].palo
     }
     fun robarCarta (): Carta_Clase{
@@ -85,34 +83,34 @@ class MainActivity : AppCompatActivity() {
         return carta_repartida
     }
 
-    private class MyCustomAdapter(context:Context, SubMazo1: MutableList<Carta_Clase>): BaseAdapter(){
 
-        private val mContext:Context
-        private val  viewMazo1=SubMazo1
 
-        init{
-            mContext=context
+    class CustomAdapter(private val dataSet: MutableList<Carta_Clase>): RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+
+        class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+            val textView: Carta=view.findViewById(R.id.carta)
+
         }
+        // Create new views (invoked by the layout manager)
+        override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+            // Create a new view, which defines the UI of the list item
+            val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.carta_mazo, viewGroup, false)
 
-        override fun getCount(): Int {
-            return viewMazo1.size
+            return ViewHolder(view)
         }
+        // Replace the contents of a view (invoked by the layout manager)
+        override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        override fun getItemId(position: Int): Long {
-            return position.toLong()
+            // Get element from your dataset at this position and replace the
+            // contents of the view with that element
+            viewHolder.textView.number = dataSet[position].numero
+            viewHolder.textView.palo = dataSet[position].palo
         }
-        override fun getItem(p0: Int): Any {
-            return "TESTTT"
-        }
+        // Return the size of your dataset (invoked by the layout manager)
+        override fun getItemCount() = dataSet.size
 
-        override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-            val layoutInflater = LayoutInflater.from(mContext)
-            val rowMain= layoutInflater.inflate(R.layout.carta_mazo,p2,false)
-
-            val nameTextView= rowMain.findViewById<Carta>(R.id.carta)
-            nameTextView.number= viewMazo1[p0].numero.toString()
-            nameTextView.palo= viewMazo1[p0].palo
-            return rowMain
-        }
     }
+
+
+
 }
