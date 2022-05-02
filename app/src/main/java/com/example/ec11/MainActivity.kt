@@ -52,8 +52,6 @@ class MainActivity : AppCompatActivity() {
     fun DuranteJuego(){
 
         imprimirTextos()
-
-
         PasarTurno()
         RobarCarta()
         unaCarta()
