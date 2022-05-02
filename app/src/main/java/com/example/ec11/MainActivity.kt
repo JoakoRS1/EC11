@@ -1,12 +1,12 @@
 package com.example.ec11
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ec11.Views.Carta
 import java.util.*
@@ -32,7 +32,12 @@ class MainActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView> (R.id.my_recycler_view)
 
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        recyclerView.layoutManager = layoutManager
 
+        val adapter = CustomAdapter(SubMazo1)
+        recyclerView.adapter = adapter
 
         val TvCartasenMazo= findViewById<TextView>(R.id.TVCartasEnMAzo)
         val TvJ1CartasMazo= findViewById<TextView>(R.id.J1Total)
@@ -53,8 +58,7 @@ class MainActivity : AppCompatActivity() {
             SubMazo3.add(robarCarta())
             J3CartasSubMazo++
         }
-        val adapter = CustomAdapter(SubMazo1)
-        recyclerView.adapter = adapter
+
         TvCartasenMazo.text=CartasenMazo.toString()
         TvJ1CartasMazo.text=J1CartasSubMazo.toString()
         TvJ2CartasMazo.text=J2CartasSubMazo.toString()
@@ -100,7 +104,6 @@ class MainActivity : AppCompatActivity() {
         }
         // Replace the contents of a view (invoked by the layout manager)
         override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
             // Get element from your dataset at this position and replace the
             // contents of the view with that element
             viewHolder.textView.number = dataSet[position].numero
