@@ -34,9 +34,9 @@ class MainActivity : AppCompatActivity() {
 
 
     fun InicializaJuego(){
-        var jugador1 = Jugador(this,1)
-        var jugador2 = Jugador(this,2)
-        var jugador3 = Jugador(this,3)
+        var jugador1 = Jugador(this,1,0)
+        var jugador2 = Jugador(this,2,0)
+        var jugador3 = Jugador(this,3,0)
 
         var areamesa = findViewById<LinearLayout>(R.id.areaCartaMesa);
 
