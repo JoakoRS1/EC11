@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         var jugador3 = Jugador(this,3,0)
 
 
-
         jugadores.add(jugador1)
         jugadores.add(jugador2)
         jugadores.add(jugador3)
