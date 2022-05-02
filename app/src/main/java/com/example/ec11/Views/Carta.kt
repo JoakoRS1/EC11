@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import com.example.ec11.R
+import com.google.android.material.transition.MaterialElevationScale
 
 class Carta: View {
     private val mPaint: Paint = Paint()
@@ -33,8 +34,8 @@ class Carta: View {
 
         mWidth = View.MeasureSpec.getSize(widthMeasureSpec).toFloat()
         mHeight = View.MeasureSpec.getSize(heightMeasureSpec).toFloat()
-        anchoCarta= mHeight*0.6f
-        setMeasuredDimension(widthMeasureSpec,heightMeasureSpec)
+        anchoCarta= mHeight*0.65f
+        setMeasuredDimension(anchoCarta.toInt(),heightMeasureSpec)
     }
 
     override fun onDraw(canvas: Canvas?){
@@ -50,26 +51,43 @@ class Carta: View {
         mPaint.style= Paint.Style.FILL_AND_STROKE
 
 
-        var rect= RectF(mWidth*0.1f,mHeight*0.1f, mWidth*0.1f+anchoCarta,mHeight*0.9f)
+        var rect= RectF(mWidth*0.1f,0f, mWidth*0.1f+anchoCarta,mHeight)
         canvas!!.drawRect(rect,mPaint)
     }
     private fun drawNumbers(canvas: Canvas?){
         mPaint.color= Color.RED
         mPaint.textSize= anchoCarta*0.2f
         mPaint.textAlign= Paint.Align.LEFT
+        var numeroStr:String=""
+        if (number==11){
+            numeroStr="J"
+        }
+        else if (number==12){
+            numeroStr="Q"
+        }
+        else if (number==13){
+            numeroStr="K"
+        }
+        else if (number==1){
+            numeroStr="A"
+        }
+        else{
+            numeroStr=number.toString()
 
-        canvas!!.drawText(number.toString(),mWidth*0.1f+anchoCarta*0.125f,mHeight*0.25f,mPaint)
+        }
+
+        canvas!!.drawText(numeroStr,anchoCarta*0.1f,mHeight*0.15f,mPaint)
         var mPaint2=mPaint
 
         mPaint2.textAlign= Paint.Align.RIGHT
 
-        canvas!!.drawText(number.toString(),mWidth*0.1f+anchoCarta * 0.875f,mHeight*0.85f,mPaint2)
+        canvas!!.drawText(numeroStr,anchoCarta * 0.9f,mHeight*0.95f,mPaint2)
     }
     private fun drawSymbols(canvas: Canvas?){
 
         var symbol: Bitmap?= null
 
-        var rect = RectF(mWidth * 0.1f, mHeight * 0.3f, mWidth * 0.1f+anchoCarta, mHeight * 0.65f)
+        var rect = RectF(mWidth * 0.1f, mHeight * 0.25f, mWidth * 0.1f+anchoCarta, mHeight * 0.75f)
         if (palo=="corazon") {
             symbol= BitmapFactory.decodeResource(resources, R.drawable.corazon)
         }
