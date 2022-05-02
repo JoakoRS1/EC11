@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         imprimirTextos();
         PasarTurno()
         RobarCarta()
+        unaCarta()
 
     }
 
@@ -169,6 +171,17 @@ class MainActivity : AppCompatActivity() {
 
         InicializaJuego()
         DuranteJuego()
+    }
+    fun unaCarta()  {
+        for(i in 0..2){
+            if(jugadores[i].cant++ == 1){
+                val num = i +1
+                Toast.makeText(applicationContext,"El jugador "+ num +" le queda una carta",Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+
     }
 
 }
