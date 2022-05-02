@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -92,6 +93,7 @@ class MainActivity : AppCompatActivity() {
         TvJ1CartasMazo.text=J1CartasSubMazo.toString()
         TvJ2CartasMazo.text=J2CartasSubMazo.toString()
         TvJ3CartasMazo.text=J3CartasSubMazo.toString()
+
     }
 
     fun shuffle(cards: MutableList<Carta_Clase>, n: Int) {
@@ -141,6 +143,21 @@ class MainActivity : AppCompatActivity() {
         // Return the size of your dataset (invoked by the layout manager)
         override fun getItemCount() = dataSet.size
 
+    }
+    fun unaCarta()  {
+        val TvJ1CartasMazo= findViewById<TextView>(R.id.J1Total)
+        val TvJ2CartasMazo= findViewById<TextView>(R.id.J2Total)
+        val TvJ3CartasMazo= findViewById<TextView>(R.id.J3Total)
+        if(J1CartasSubMazo == 8 ){
+            Toast.makeText(applicationContext,"El jugador 1 le queda una carta",Toast.LENGTH_SHORT).show()
+        }
+        if(J2CartasSubMazo == 1){
+            Toast.makeText(applicationContext,"El jugador 2 le queda una carta",Toast.LENGTH_SHORT).show()
+        }
+        if(J3CartasSubMazo== 1){
+            Toast.makeText(applicationContext,"El jugador 3 le queda una carta",Toast.LENGTH_SHORT).show()
+
+        }
     }
 
 
