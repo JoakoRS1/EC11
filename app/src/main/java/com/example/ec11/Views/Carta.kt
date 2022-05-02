@@ -71,7 +71,6 @@ class Carta: View {
         }
         else{
             numeroStr=number.toString()
-
         }
 
         canvas!!.drawText(numeroStr,anchoCarta*0.1f,mHeight*0.15f,mPaint)
