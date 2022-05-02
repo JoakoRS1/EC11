@@ -34,7 +34,7 @@ class Carta: View {
         mWidth = View.MeasureSpec.getSize(widthMeasureSpec).toFloat()
         mHeight = View.MeasureSpec.getSize(heightMeasureSpec).toFloat()
         anchoCarta= mHeight*0.6f
-        setMeasuredDimension(200,heightMeasureSpec)
+        setMeasuredDimension(widthMeasureSpec,heightMeasureSpec)
     }
 
     override fun onDraw(canvas: Canvas?){
