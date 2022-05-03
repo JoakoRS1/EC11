@@ -169,13 +169,7 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
-
-
     }
-
-
-
-
 
     fun agregarCarta (): Carta{
         //-1 Mazo principal
