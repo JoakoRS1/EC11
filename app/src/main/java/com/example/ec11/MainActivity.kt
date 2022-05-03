@@ -77,7 +77,6 @@ class MainActivity : AppCompatActivity() {
         val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
         cartaMesa.addView(Mesa[pos])
         pos++
-
     }
 
     fun shuffle(cards: MutableList<Carta>, n: Int) {
@@ -168,9 +167,6 @@ class MainActivity : AppCompatActivity() {
                         this@MainActivity, ":(", Toast.LENGTH_SHORT).show()
                 }
 
-
-
-
             }
         })
 
@@ -252,7 +248,8 @@ class MainActivity : AppCompatActivity() {
         for(i in 0..2){
             if(jugadores[i].cant == 1){
                 val num = i +1
-                Toast.makeText(applicationContext,"El jugador "+ num +" le queda una carta",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,
+                    "El jugador "+ num +" le queda una carta",Toast.LENGTH_SHORT).show()
             }
         }
     }
