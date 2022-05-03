@@ -133,8 +133,11 @@ class MainActivity : AppCompatActivity() {
                     this@MainActivity, "numero Sel: " + numSelec, Toast.LENGTH_SHORT).show()
 
                 if (numSelec == numeroM || paloSelec == paloM){
-                    //Mesa[pos] = cartaSelec
-                    //pos++
+                    Mesa.add(cartaSelec)
+                    val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
+                    cartaMesa.removeAllViews()
+                    cartaMesa.addView(Mesa[pos])
+                    pos++
 
                     jugadores[aTurno[0]].subMazo.remove(cartaSelec)
                     jugadores[aTurno[0]].cant--
