@@ -173,16 +173,9 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(
                         this@MainActivity, ":(", Toast.LENGTH_SHORT).show()
                 }
-
             }
         })
-
-
     }
-
-
-
-
 
     fun agregarCarta (): Carta{
         //-1 Mazo principal
@@ -192,15 +185,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun PasarTurno(){
-        var areaJug = findViewById<LinearLayout>(R.id.areaJugadorTurno)
+        //var areaJug = findViewById<LinearLayout>(R.id.areaJugadorTurno)
         val bPasar = findViewById<Button>(R.id.bPasar);
         bPasar.setOnClickListener{
             val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
-            //areaJug.removeAllViews()
-            Toast.makeText(
+            /*Toast.makeText(
                 this@MainActivity,
-                "Se pasó turno", Toast.LENGTH_SHORT).show()
-
+                "Se pasó turno", Toast.LENGTH_SHORT).show()*/
 
             var aux = aTurno[0]
             aTurno.removeFromStart(1)
@@ -234,13 +225,22 @@ class MainActivity : AppCompatActivity() {
         val TvCartasenMazo= findViewById<TextView>(R.id.TVCartasEnMAzo)
         TvCartasenMazo.text=CartasenMazo.toString()
 
+        val JActualId= findViewById<TextView>(R.id.JActualId)
+        val JSiguienteId= findViewById<TextView>(R.id.JSigId)
+        val JSiguienteSigId= findViewById<TextView>(R.id.JSigSigId)
+
         val JActual= findViewById<TextView>(R.id.JActualTotal)
         val JSiguiente= findViewById<TextView>(R.id.JSigSigTotal)
         val JSiguienteSig= findViewById<TextView>(R.id.JSigTotal)
 
-        JActual.text=jugadores[aTurno[0]].cant.toString()
+        JActualId.text="Jugador " + jugadores[aTurno[0]].posi.toString()+ ":  "
+        JSiguienteId.text="Jugador " + jugadores[aTurno[1]].posi.toString()+ ":  "
+        JSiguienteSigId.text="Jugador " + jugadores[aTurno[2]].posi.toString()+ ":  "
+
+        JActual.text= jugadores[aTurno[0]].cant.toString()
         JSiguiente.text=jugadores[aTurno[1]].cant.toString()
         JSiguienteSig.text=jugadores[aTurno[2]].cant.toString()
+
     }
 
 
