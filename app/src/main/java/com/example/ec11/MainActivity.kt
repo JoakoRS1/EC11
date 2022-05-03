@@ -241,7 +241,6 @@ class MainActivity : AppCompatActivity() {
         JSiguiente.text=jugadores[aTurno[1]].cant.toString()
         JSiguienteSig.text=jugadores[aTurno[2]].cant.toString()
 
-
     }
 
 
