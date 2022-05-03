@@ -146,13 +146,18 @@ class MainActivity : AppCompatActivity() {
 
                     //agregar a la mesa
 
-                    /*if (cartaSeleccion()!!.number== 11){
+                    if (cartaSelec!!.number== 11){
+
                         var aux = aTurno[0]
                         var aux2 = aTurno[1]
                         aTurno.removeFromStart(2)
                         aTurno.addLast(aux)
                         aTurno.addLast(aux2)
-                    }*/
+
+                        dibujarCartas()
+                        imprimirTextos()
+
+                    }
                     if(cartaSelec!!.number==13){
                         for (i in 0..2){
                             jugadores[aTurno[1]].subMazo.add(agregarCarta())
