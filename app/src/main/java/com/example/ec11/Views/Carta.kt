@@ -49,8 +49,8 @@ class Carta: View {
         mPaint.style= Paint.Style.FILL_AND_STROKE
 
 
-        var rect= RectF(mWidth*0.1f,0f, mWidth*0.1f+anchoCarta,mHeight)
-        canvas!!.drawRect(rect,mPaint)
+        var rect= RectF(0f,0f, anchoCarta,mHeight)
+        canvas!!.drawRoundRect(rect, mHeight*0.1f,mHeight*0.1f,mPaint)
     }
     private fun drawNumbers(canvas: Canvas?){
         mPaint.color= Color.RED
@@ -84,7 +84,7 @@ class Carta: View {
 
         var symbol: Bitmap?= null
 
-        var rect = RectF(mWidth * 0.1f, mHeight * 0.25f, mWidth * 0.1f+anchoCarta, mHeight * 0.75f)
+        var rect = RectF(anchoCarta*0.1f, mHeight * 0.25f, anchoCarta * 0.9f, mHeight * 0.75f)
         if (palo=="corazon") {
             symbol= BitmapFactory.decodeResource(resources, R.drawable.corazon)
         }
