@@ -166,7 +166,6 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(
                         this@MainActivity, ":(", Toast.LENGTH_SHORT).show()
                 }
-
             }
         })
     }
