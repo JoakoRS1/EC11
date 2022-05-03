@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     var jugadores = mutableListOf<Jugador>()
     var aTurno = CircularIntArray()
 
-    var adapter = CustomAdapter(mutableListOf<Carta>())
+    //var adapter = CustomAdapter(mutableListOf<Carta>())
 
     private var Mazo = mutableListOf<Carta>()
     private  var Mesa = mutableListOf<Carta>()
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     fun DuranteJuego(){
 
         imprimirTextos()
-        //tirarCarta()
+        tirarCarta(5)
         PasarTurno()
         RobarCarta()
         unaCarta()
@@ -90,8 +90,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    fun llamarRecycler(): RecyclerView{
+    fun recycle(): RecyclerView{
         val recyclerView = findViewById<RecyclerView> (R.id.my_recycler_view)
         //val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
 
@@ -101,64 +100,54 @@ class MainActivity : AppCompatActivity() {
         return recyclerView
     }
 
-    fun dibujarCartas(){
 
-        adapter = CustomAdapter(jugadores[aTurno[0]].subMazo)
-        llamarRecycler().adapter = adapter
-        adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
-                cartaSeleccion()
-            }
-        })
+    fun dibujarCartas(){
+        val adapter = CustomAdapter(jugadores[0].subMazo)//CAMBIARRR
+        recycle().adapter = adapter
+        tirarCarta(5)
     }
 
-    fun cartaSeleccion():Carta?{
-        var cartaSelec: Carta? = null
+    fun tirarCarta(numeroM: Int){
 
-        adapter = CustomAdapter(jugadores[aTurno[0]].subMazo)
-        llamarRecycler().adapter = adapter
+        val adapter = CustomAdapter(jugadores[aTurno[0]].subMazo)
+        recycle().adapter = adapter
 
         adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
 
-                var MazoJugador= jugadores[aTurno[0]].subMazo //Referencia a este mazo (J1)
+                var MazoJugador= jugadores[aTurno[0]].subMazo
+                var cartaSelec = MazoJugador[position]
                 Toast.makeText(
                     this@MainActivity,
                     "SELECCIONASTE LA CARTA"+
-                            MazoJugador[position].number+
-                            MazoJugador[position].palo, Toast.LENGTH_SHORT).show()
-            }
-        })
-        return cartaSelec
-    }
+                            cartaSelec.number+
+                            cartaSelec.palo, Toast.LENGTH_SHORT).show()
+                Log.i("CartaSelec",cartaSelec?.number.toString() + " "+cartaSelec?.palo)
 
+                var numSelec = cartaSelec.number
+                //leer carta en mesa
+                Toast.makeText(
+                    this@MainActivity, "numerosel" + numSelec, Toast.LENGTH_SHORT).show()
 
-        fun tirarCarta(numeroM: Int){
-
-        //leer carta en mesa
-        llamarRecycler().adapter = adapter
-        adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
-                cartaSeleccion()
-
-                if (numeroM == cartaSeleccion()!!.number){
-                    jugadores[aTurno[0]].subMazo.remove(cartaSeleccion())
+                if (numSelec == 3){
+                    //jugadores[aTurno[0]].subMazo.remove(cartaSeleccion())
                     jugadores[aTurno[0]].cant--
                     Toast.makeText(
-                        this@MainActivity,
-                        "carta igual a mesa", Toast.LENGTH_SHORT).show()
+                        this@MainActivity, "carta igual a mesa", Toast.LENGTH_SHORT).show()
 
                     //agregar a la mesa
 
-                    if (cartaSeleccion()!!.number== 11){
+                    /*if (cartaSeleccion()!!.number== 11){
                         var aux = aTurno[0]
                         var aux2 = aTurno[1]
                         aTurno.removeFromStart(2)
                         aTurno.addLast(aux)
                         aTurno.addLast(aux2)
-                    }
+                    }*/
+                }else{
+                    Toast.makeText(
+                        this@MainActivity, ":(", Toast.LENGTH_SHORT).show()
                 }
-
 
 
 
@@ -171,10 +160,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    /*fun crearVistaCarta(CardView: Carta){
-        CardView.number= Mazo[3].number
-        CardView.palo=Mazo[3].palo
-    }*/
+
 
     fun agregarCarta (): Carta{
         //-1 Mazo principal
