@@ -153,9 +153,6 @@ class MainActivity : AppCompatActivity() {
                         this@MainActivity, ":(", Toast.LENGTH_SHORT).show()
                 }
 
-
-
-
             }
         })
 
