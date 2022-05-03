@@ -239,7 +239,8 @@ class MainActivity : AppCompatActivity() {
         for(i in 0..2){
             if(jugadores[i].cant == 1){
                 val num = i +1
-                Toast.makeText(applicationContext,"El jugador "+ num +" le queda una carta",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,
+                    "El jugador "+ num +" le queda una carta",Toast.LENGTH_SHORT).show()
             }
         }
     }
