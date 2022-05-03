@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
         tirarCarta(5)
     }
 
-    fun tirarCarta(numeroM: Int){
+    fun tirarCarta(numeroM: Int){ //paloM: String
 
         val adapter = CustomAdapter(jugadores[aTurno[0]].subMazo)
         recycle().adapter = adapter
@@ -117,21 +117,23 @@ class MainActivity : AppCompatActivity() {
 
                 var MazoJugador= jugadores[aTurno[0]].subMazo
                 var cartaSelec = MazoJugador[position]
-                Toast.makeText(
+                /*Toast.makeText(
                     this@MainActivity,
                     "SELECCIONASTE LA CARTA"+
                             cartaSelec.number+
                             cartaSelec.palo, Toast.LENGTH_SHORT).show()
-                Log.i("CartaSelec",cartaSelec?.number.toString() + " "+cartaSelec?.palo)
+                Log.i("CartaSelec",cartaSelec?.number.toString() + " "+cartaSelec?.palo)*/
 
                 var numSelec = cartaSelec.number
                 //leer carta en mesa
                 Toast.makeText(
-                    this@MainActivity, "numerosel" + numSelec, Toast.LENGTH_SHORT).show()
+                    this@MainActivity, "numero Sel: " + numSelec, Toast.LENGTH_SHORT).show()
 
-                if (numSelec == 3){
-                    //jugadores[aTurno[0]].subMazo.remove(cartaSeleccion())
+                if (numSelec == numeroM){
+                    jugadores[aTurno[0]].subMazo.remove(cartaSelec)
                     jugadores[aTurno[0]].cant--
+                    imprimirTextos()
+                    dibujarCartas()
                     Toast.makeText(
                         this@MainActivity, "carta igual a mesa", Toast.LENGTH_SHORT).show()
 
@@ -144,6 +146,7 @@ class MainActivity : AppCompatActivity() {
                         aTurno.addLast(aux)
                         aTurno.addLast(aux2)
                     }*/
+
                 }else{
                     Toast.makeText(
                         this@MainActivity, ":(", Toast.LENGTH_SHORT).show()
