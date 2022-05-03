@@ -77,7 +77,6 @@ class MainActivity : AppCompatActivity() {
         val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
         cartaMesa.addView(Mesa[pos])
         pos++
-
     }
 
     fun shuffle(cards: MutableList<Carta>, n: Int) {
