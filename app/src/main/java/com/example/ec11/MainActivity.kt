@@ -127,8 +127,8 @@ class MainActivity : AppCompatActivity() {
                 var numSelec = cartaSelec.number
                 var paloSelec = cartaSelec.palo
                 //leer carta en mesa
-                Toast.makeText(
-                    this@MainActivity, "numero Sel: " + numSelec, Toast.LENGTH_SHORT).show()
+                /*Toast.makeText(
+                    this@MainActivity, "numero Sel: " + numSelec, Toast.LENGTH_SHORT).show()*/
 
                 if (numSelec == numeroM || paloSelec == paloM){
                     Mesa.add(cartaSelec)
@@ -141,8 +141,8 @@ class MainActivity : AppCompatActivity() {
                     jugadores[aTurno[0]].cant--
                     imprimirTextos()
                     dibujarCartas()
-                    Toast.makeText(
-                        this@MainActivity, "carta igual a mesa", Toast.LENGTH_SHORT).show()
+                    /*Toast.makeText(
+                        this@MainActivity, "carta igual a mesa", Toast.LENGTH_SHORT).show()*/
 
                     //agregar a la mesa
 
@@ -162,8 +162,10 @@ class MainActivity : AppCompatActivity() {
                     }
 
                 }else{
+
                     Toast.makeText(
-                        this@MainActivity, ":(", Toast.LENGTH_SHORT).show()
+                        this@MainActivity,
+                        "La carta " + numSelec + " " +paloSelec + " no coincide", Toast.LENGTH_SHORT).show()
                 }
             }
         })
