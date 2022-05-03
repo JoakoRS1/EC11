@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     fun DuranteJuego(){
 
         imprimirTextos()
-        tirarCarta(5)
+        tirarCarta(5, "corazon")
         PasarTurno()
         RobarCarta()
         unaCarta()
@@ -104,10 +104,10 @@ class MainActivity : AppCompatActivity() {
     fun dibujarCartas(){
         val adapter = CustomAdapter(jugadores[0].subMazo)//CAMBIARRR
         recycle().adapter = adapter
-        tirarCarta(5)
+        tirarCarta(5, "corazon")
     }
 
-    fun tirarCarta(numeroM: Int){ //paloM: String
+    fun tirarCarta(numeroM: Int, paloM: String){
 
         val adapter = CustomAdapter(jugadores[aTurno[0]].subMazo)
         recycle().adapter = adapter
@@ -125,11 +125,12 @@ class MainActivity : AppCompatActivity() {
                 Log.i("CartaSelec",cartaSelec?.number.toString() + " "+cartaSelec?.palo)*/
 
                 var numSelec = cartaSelec.number
+                var paloSelec = cartaSelec.palo
                 //leer carta en mesa
                 Toast.makeText(
                     this@MainActivity, "numero Sel: " + numSelec, Toast.LENGTH_SHORT).show()
 
-                if (numSelec == numeroM){
+                if (numSelec == numeroM || paloSelec == paloM){
                     jugadores[aTurno[0]].subMazo.remove(cartaSelec)
                     jugadores[aTurno[0]].cant--
                     imprimirTextos()
@@ -204,6 +205,7 @@ class MainActivity : AppCompatActivity() {
                 this@MainActivity,
                 "Se robó carta", Toast.LENGTH_SHORT).show()
 
+            dibujarCartas()
             imprimirTextos()
         }
     }
