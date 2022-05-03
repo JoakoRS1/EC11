@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
     fun DuranteJuego(){
 
         imprimirTextos()
+        //tirarCarta()
         PasarTurno()
         RobarCarta()
         unaCarta()
@@ -104,17 +105,18 @@ class MainActivity : AppCompatActivity() {
 
         adapter = CustomAdapter(jugadores[aTurno[0]].subMazo)
         llamarRecycler().adapter = adapter
-
-
         adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
+                cartaSeleccion()
             }
         })
     }
 
     fun cartaSeleccion():Carta?{
-
         var cartaSelec: Carta? = null
+
+        adapter = CustomAdapter(jugadores[aTurno[0]].subMazo)
+        llamarRecycler().adapter = adapter
 
         adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
@@ -127,35 +129,45 @@ class MainActivity : AppCompatActivity() {
                             MazoJugador[position].palo, Toast.LENGTH_SHORT).show()
             }
         })
-
-
         return cartaSelec
     }
 
 
-    fun tirarCarta(cartaA: Carta,cartaM: Carta){
+        fun tirarCarta(numeroM: Int){
 
         //leer carta en mesa
+        llamarRecycler().adapter = adapter
+        adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                cartaSeleccion()
 
-        var cartaPos = findViewById<RecyclerView>(R.id.my_recycler_view)
+                if (numeroM == cartaSeleccion()!!.number){
+                    jugadores[aTurno[0]].subMazo.remove(cartaSeleccion())
+                    jugadores[aTurno[0]].cant--
+                    Toast.makeText(
+                        this@MainActivity,
+                        "carta igual a mesa", Toast.LENGTH_SHORT).show()
+
+                    //agregar a la mesa
+
+                    if (cartaSeleccion()!!.number== 11){
+                        var aux = aTurno[0]
+                        var aux2 = aTurno[1]
+                        aTurno.removeFromStart(2)
+                        aTurno.addLast(aux)
+                        aTurno.addLast(aux2)
+                    }
+                }
 
 
-        if (cartaM.number == cartaA.number){
-            jugadores[aTurno[0]].subMazo.remove(cartaA)
-            //agregar a la mesa
 
-            if (cartaA.number== 11){
-                var aux = aTurno[0]
-                var aux2 = aTurno[1]
-                aTurno.removeFromStart(2)
-                aTurno.addLast(aux)
-                aTurno.addLast(aux2)
+
+
             }
-        }
+        })
+
 
     }
-
-
 
 
 
@@ -177,7 +189,9 @@ class MainActivity : AppCompatActivity() {
         bPasar.setOnClickListener{
             val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
             //areaJug.removeAllViews()
-            a.text="PASAAA"//PRUEBA
+            Toast.makeText(
+                this@MainActivity,
+                "Se pasó turno", Toast.LENGTH_SHORT).show()
 
 
             var aux = aTurno[0]
@@ -196,6 +210,10 @@ class MainActivity : AppCompatActivity() {
 
             jugadores[aTurno[0]].subMazo.add(agregarCarta())
             jugadores[aTurno[0]].cant++
+
+            Toast.makeText(
+                this@MainActivity,
+                "Se robó carta", Toast.LENGTH_SHORT).show()
 
             imprimirTextos()
         }
