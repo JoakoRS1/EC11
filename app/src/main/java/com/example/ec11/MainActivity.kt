@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     fun DuranteJuego(){
 
         imprimirTextos()
-        tirarCarta(5, "corazon")
+        tirarCarta(Mesa[pos-1].number, Mesa[pos-1].palo)
         PasarTurno()
         RobarCarta()
         unaCarta()
@@ -74,6 +74,8 @@ class MainActivity : AppCompatActivity() {
        }
         Mesa.add(agregarCarta())
         Log.i("MESA",Mesa[pos].number.toString() + " "+Mesa[pos].palo)
+        val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
+        cartaMesa.addView(Mesa[pos])
         pos++
 
     }
@@ -104,7 +106,7 @@ class MainActivity : AppCompatActivity() {
     fun dibujarCartas(){
         val adapter = CustomAdapter(jugadores[0].subMazo)//CAMBIARRR
         recycle().adapter = adapter
-        tirarCarta(5, "corazon")
+        tirarCarta(Mesa[pos-1].number, Mesa[pos-1].palo)
     }
 
     fun tirarCarta(numeroM: Int, paloM: String){
@@ -131,6 +133,8 @@ class MainActivity : AppCompatActivity() {
                     this@MainActivity, "numero Sel: " + numSelec, Toast.LENGTH_SHORT).show()
 
                 if (numSelec == numeroM || paloSelec == paloM){
+                    //Mesa[pos] = cartaSelec
+                    //pos++
                     jugadores[aTurno[0]].subMazo.remove(cartaSelec)
                     jugadores[aTurno[0]].cant--
                     imprimirTextos()
