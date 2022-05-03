@@ -164,7 +164,9 @@
             <LinearLayout
                 android:id="@+id/cartaMesa"
                 android:layout_width="match_parent"
+                android:gravity="center"
                 android:layout_height="match_parent"
+                android:background="#44A832"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
