@@ -135,6 +135,7 @@ class MainActivity : AppCompatActivity() {
                 if (numSelec == numeroM || paloSelec == paloM){
                     //Mesa[pos] = cartaSelec
                     //pos++
+
                     jugadores[aTurno[0]].subMazo.remove(cartaSelec)
                     jugadores[aTurno[0]].cant--
                     imprimirTextos()
