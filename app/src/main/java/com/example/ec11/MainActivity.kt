@@ -148,14 +148,12 @@ class MainActivity : AppCompatActivity() {
                     //agregar a la mesa
 
                     if (cartaSelec!!.number== 11){
-                        /*var aux = aTurno[0]
+
+                        var aux = aTurno[0]
                         var aux2 = aTurno[1]
                         aTurno.removeFromStart(2)
                         aTurno.addLast(aux)
-                        aTurno.addLast(aux2)*/
-                        var aux = aTurno[0]
-                        aTurno.removeFromStart(1)
-                        aTurno.addLast(aux)
+                        aTurno.addLast(aux2)
 
                         dibujarCartas()
                         imprimirTextos()
