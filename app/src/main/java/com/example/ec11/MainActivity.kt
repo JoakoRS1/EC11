@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     //var Carta: Carta? = null
     var jugadores = mutableListOf<Jugador>()
     var aTurno = CircularIntArray()
+    private var lanza = 0
+    private var robo = 0
 
     //var adapter = CustomAdapter(mutableListOf<Carta>())
 
@@ -73,6 +75,7 @@ class MainActivity : AppCompatActivity() {
            }
        }
         Mesa.add(agregarCarta())
+
         Log.i("MESA",Mesa[pos].number.toString() + " "+Mesa[pos].palo)
         val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
         cartaMesa.addView(Mesa[pos])
@@ -131,11 +134,15 @@ class MainActivity : AppCompatActivity() {
                     this@MainActivity, "numero Sel: " + numSelec, Toast.LENGTH_SHORT).show()*/
 
                 if (numSelec == numeroM || paloSelec == paloM){
+
                     Mesa.add(cartaSelec)
                     val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
                     cartaMesa.removeAllViews()
                     cartaMesa.addView(Mesa[pos])
                     pos++
+                    lanza++
+
+                    Log.i("MESA",lanza.toString() )
 
                     jugadores[aTurno[0]].subMazo.remove(cartaSelec)
                     jugadores[aTurno[0]].cant--
@@ -153,19 +160,26 @@ class MainActivity : AppCompatActivity() {
                         aTurno.removeFromStart(2)
                         aTurno.addLast(aux)
                         aTurno.addLast(aux2)
-
+                        lanza = 0
+                        //PasarTurno()
                         dibujarCartas()
                         imprimirTextos()
 
                     }
                     if(cartaSelec!!.number==13){
                         for (i in 0..2){
+                            if(Mazo.isNotEmpty()){
                             jugadores[aTurno[1]].subMazo.add(agregarCarta())
-                            jugadores[aTurno[1]].cant++
+                            jugadores[aTurno[1]].cant++}
+                            else{
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    "No hay cartas", Toast.LENGTH_SHORT).show()
+                            }
                         }
 
                     }
-
+                    PasarTurno()
                 }else{
 
                     Toast.makeText(
@@ -178,26 +192,32 @@ class MainActivity : AppCompatActivity() {
 
     fun agregarCarta (): Carta{
         //-1 Mazo principal
+
         var carta_repartida=Mazo.removeAt(0)
         CartasenMazo-=1
         return carta_repartida
+
     }
 
     fun PasarTurno(){
-        //var areaJug = findViewById<LinearLayout>(R.id.areaJugadorTurno)
         val bPasar = findViewById<Button>(R.id.bPasar);
-        bPasar.setOnClickListener{
-            val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
-            /*Toast.makeText(
-                this@MainActivity,
-                "Se pasó turno", Toast.LENGTH_SHORT).show()*/
+        if(lanza<1){bPasar.isEnabled = false}
+        else{
+            bPasar.isEnabled = true
+            bPasar.setOnClickListener{
 
-            var aux = aTurno[0]
-            aTurno.removeFromStart(1)
-            aTurno.addLast(aux)
+                val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
+                /*Toast.makeText(
+                    this@MainActivity,
+                    "Se pasó turno", Toast.LENGTH_SHORT).show()*/
 
-            dibujarCartas()
-            imprimirTextos()
+                var aux = aTurno[0]
+                aTurno.removeFromStart(1)
+                aTurno.addLast(aux)
+                lanza = 0
+                bPasar.isEnabled = false
+                dibujarCartas()
+                imprimirTextos()}
         }
     }
 
@@ -205,7 +225,7 @@ class MainActivity : AppCompatActivity() {
         val bRobar = findViewById<Button>(R.id.bRobar);
         bRobar.setOnClickListener{
             val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
-
+            if(Mazo.isNotEmpty()){
             jugadores[aTurno[0]].subMazo.add(agregarCarta())
             jugadores[aTurno[0]].cant++
 
@@ -214,7 +234,12 @@ class MainActivity : AppCompatActivity() {
                 "Se robó carta", Toast.LENGTH_SHORT).show()
 
             dibujarCartas()
-            imprimirTextos()
+            imprimirTextos()}
+            else{
+                Toast.makeText(
+                    this@MainActivity,
+                    "No hay cartas", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -237,8 +262,8 @@ class MainActivity : AppCompatActivity() {
         JSiguienteSigId.text="Jugador " + jugadores[aTurno[2]].posi.toString()+ ":  "
 
         JActual.text= jugadores[aTurno[0]].cant.toString()
-        JSiguiente.text=jugadores[aTurno[1]].cant.toString()
-        JSiguienteSig.text=jugadores[aTurno[2]].cant.toString()
+        JSiguiente.text=jugadores[aTurno[1]].cant.toString() + " cartas"
+        JSiguienteSig.text=jugadores[aTurno[2]].cant.toString() + " cartas"
 
     }
 
