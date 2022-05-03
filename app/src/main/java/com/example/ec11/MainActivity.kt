@@ -101,7 +101,6 @@ class MainActivity : AppCompatActivity() {
         return recyclerView
     }
 
-
     fun dibujarCartas(){
         val adapter = CustomAdapter(jugadores[0].subMazo)//CAMBIARRR
         recycle().adapter = adapter
