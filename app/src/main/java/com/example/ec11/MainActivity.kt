@@ -154,6 +154,13 @@ class MainActivity : AppCompatActivity() {
                         aTurno.addLast(aux)
                         aTurno.addLast(aux2)
                     }*/
+                    if(cartaSelec!!.number==13){
+                        for (i in 0..2){
+                            jugadores[aTurno[1]].subMazo.add(agregarCarta())
+                            jugadores[aTurno[1]].cant++
+                        }
+
+                    }
 
                 }else{
                     Toast.makeText(
