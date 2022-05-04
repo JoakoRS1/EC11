@@ -261,7 +261,7 @@ class MainActivity : AppCompatActivity() {
         JSiguienteId.text="Jugador " + jugadores[aTurno[1]].posi.toString()+ ":  "
         JSiguienteSigId.text="Jugador " + jugadores[aTurno[2]].posi.toString()+ ":  "
 
-        JActual.text= jugadores[aTurno[0]].cant.toString()
+        JActual.text= jugadores[aTurno[0]].cant.toString()+ " cartas"
         JSiguiente.text=jugadores[aTurno[1]].cant.toString() + " cartas"
         JSiguienteSig.text=jugadores[aTurno[2]].cant.toString() + " cartas"
 
