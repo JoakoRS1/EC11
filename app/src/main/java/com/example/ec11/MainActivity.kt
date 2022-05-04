@@ -2,7 +2,10 @@ package com.example.ec11
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.collection.CircularIntArray
 import androidx.core.view.drawToBitmap
@@ -19,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     var aTurno = CircularIntArray()
     private var lanza = 0
     private var robo = 0
+    var contpalo =0
 
     //var adapter = CustomAdapter(mutableListOf<Carta>())
 
@@ -126,6 +130,8 @@ class MainActivity : AppCompatActivity() {
 
                 var numSelec = cartaSelec.number
                 var paloSelec = cartaSelec.palo
+                var contnum =0
+
                 //leer carta en mesa
                 /*Toast.makeText(
                     this@MainActivity, "numero Sel: " + numSelec, Toast.LENGTH_SHORT).show()*/
@@ -139,10 +145,12 @@ class MainActivity : AppCompatActivity() {
                     pos++
                     lanza++
 
+
                     Log.i("MESA",lanza.toString() )
 
                     jugadores[aTurno[0]].subMazo.remove(cartaSelec)
                     jugadores[aTurno[0]].cant--
+
                     imprimirTextos()
                     dibujarCartas()
                     /*Toast.makeText(
@@ -174,9 +182,17 @@ class MainActivity : AppCompatActivity() {
                                     "No hay cartas", Toast.LENGTH_SHORT).show()
                             }
                         }
-
                     }
                     PasarTurno()
+                    if (paloSelec == paloM && numSelec != numeroM){
+                        var aux = aTurno[0]
+                        aTurno.removeFromStart(1)
+                        aTurno.addLast(aux)
+                        dibujarCartas()
+                        imprimirTextos()
+
+                    }
+
                 }else{
 
                     Toast.makeText(
@@ -219,7 +235,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun RobarCarta(){
-        val bRobar = findViewById<ImageView>(R.id.bRobar);
+        val bRobar = findViewById<Button>(R.id.bRobar);
         bRobar.setOnClickListener{
             val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
             if(Mazo.isNotEmpty()){
@@ -239,6 +255,19 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(
                     this@MainActivity,
                     "No hay cartas", Toast.LENGTH_SHORT).show()
+                Log.i("ROBAR",pos.toString() + " Largo: "+Mesa.size)
+                Log.i("ROBAR", " Mazo: "+Mazo.size)
+
+               /* var contador = 0
+                while (Mesa.size<=1){
+                    Mazo.add(Mesa[contador])
+                    Log.i("ROBAR", " se agregar al Mazo: "+Mazo[contador].number)
+                    Mesa.removeAt(contador)
+                    contador++
+
+                }
+                pos=0
+                shuffle(Mazo,Mazo.size)*/
             }
         }
     }
@@ -271,7 +300,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         InicializaJuego()
         DuranteJuego()
     }
