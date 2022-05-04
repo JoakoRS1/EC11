@@ -185,7 +185,6 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                     }
-
                     if (numSelec == numeroM){
                         numAux = numeroM
                         contnum++
