@@ -120,7 +120,6 @@ class MainActivity : AppCompatActivity() {
 
         adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
-
                 var MazoJugador= jugadores[aTurno[0]].subMazo
                 var cartaSelec = MazoJugador[position]
                 /*Toast.makeText(
@@ -185,6 +184,7 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                     }
+
                     if (numSelec == numeroM){
                         numAux = numeroM
                         contnum++
@@ -193,14 +193,17 @@ class MainActivity : AppCompatActivity() {
                         contJugada++
                     }
                     PasarTurno()
-                }else if(contJugada==1&& (numSelec == numeroM || paloSelec == paloM)){
+                    dibujarCartas()
+                    imprimirTextos()
+                }
+
+                else if(contJugada==1&& (numSelec == numeroM || paloSelec == paloM)){
                     Toast.makeText(
                         this@MainActivity,
                         "PASA TURNO", Toast.LENGTH_SHORT).show()
                     contJugada=0
                 }
                 else {
-
                     Toast.makeText(
                         this@MainActivity,
                         "La carta " + numSelec + " " +paloSelec + " no coincide", Toast.LENGTH_SHORT).show()
@@ -232,47 +235,57 @@ class MainActivity : AppCompatActivity() {
                 aTurno.removeFromStart(1)
                 aTurno.addLast(aux)
                 lanza = 0
+                robo = 0
                 bPasar.isEnabled = false
                 dibujarCartas()
+                RobarCarta()
                 imprimirTextos()}
         }
     }
 
     fun RobarCarta(){
-        val bRobar = findViewById<Button>(R.id.bRobar);
-        bRobar.setOnClickListener{
-            val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
-            if(Mazo.isNotEmpty()){
-            jugadores[aTurno[0]].subMazo.add(agregarCarta())
-            jugadores[aTurno[0]].cant++
+        val bRobar = findViewById<Button>(R.id.bRobar)
+        bRobar.isEnabled = true
+        if(robo<1){
+            bRobar.setOnClickListener{
+                val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
+                if(Mazo.isNotEmpty()){
+                    jugadores[aTurno[0]].subMazo.add(agregarCarta())
+                    jugadores[aTurno[0]].cant++
+                    robo++
+                    bRobar.isEnabled = false
+                    Log.i("robo",robo.toString() )
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Se robó carta", Toast.LENGTH_SHORT).show()
 
-            Toast.makeText(
-                this@MainActivity,
-                "Se robó carta", Toast.LENGTH_SHORT).show()
+                    dibujarCartas()
+                    imprimirTextos()
+                    lanza++
+                    PasarTurno()}
+                else{
+                    Toast.makeText(
+                        this@MainActivity,
+                        "No hay cartas", Toast.LENGTH_SHORT).show()
+                    Log.i("ROBAR",pos.toString() + " Largo: "+Mesa.size)
+                    Log.i("ROBAR", " Mazo: "+Mazo.size)
 
-            dibujarCartas()
-            imprimirTextos()
-                lanza++
-                PasarTurno()
-            }
-            else{
-                Toast.makeText(
-                    this@MainActivity,
-                    "No hay cartas", Toast.LENGTH_SHORT).show()
+                    /* var contador = 0
+                     while (Mesa.size<=1){
+                         Mazo.add(Mesa[contador])
+                         Log.i("ROBAR", " se agregar al Mazo: "+Mazo[contador].number)
+                         Mesa.removeAt(contador)
+                         contador++
+                     }
+                     pos=0
+                     shuffle(Mazo,Mazo.size)*/
+                }}
 
-
-               /* var contador = 0
-                while (Mesa.size<=1){
-                    Mazo.add(Mesa[contador])
-                    Log.i("ROBAR", " se agregar al Mazo: "+Mazo[contador].number)
-                    Mesa.removeAt(contador)
-                    contador++
-
-                }
-                pos=0
-                shuffle(Mazo,Mazo.size)*/
-            }
         }
+        else{
+            bRobar.isEnabled = false
+        }
+
     }
 
 
@@ -293,7 +306,7 @@ class MainActivity : AppCompatActivity() {
         JSiguienteId.text="Jugador " + jugadores[aTurno[1]].posi.toString()+ ":  "
         JSiguienteSigId.text="Jugador " + jugadores[aTurno[2]].posi.toString()+ ":  "
 
-        JActual.text= jugadores[aTurno[0]].cant.toString()
+        JActual.text= jugadores[aTurno[0]].cant.toString()+ " cartas"
         JSiguiente.text=jugadores[aTurno[1]].cant.toString() + " cartas"
         JSiguienteSig.text=jugadores[aTurno[2]].cant.toString() + " cartas"
 
