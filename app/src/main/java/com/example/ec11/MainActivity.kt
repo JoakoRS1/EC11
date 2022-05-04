@@ -148,8 +148,7 @@ class MainActivity : AppCompatActivity() {
                     jugadores[aTurno[0]].subMazo.remove(cartaSelec)
                     jugadores[aTurno[0]].cant--
 
-                    imprimirTextos()
-                    dibujarCartas()
+
                     /*Toast.makeText(
                         this@MainActivity, "carta igual a mesa", Toast.LENGTH_SHORT).show()*/
 
@@ -164,8 +163,6 @@ class MainActivity : AppCompatActivity() {
                         aTurno.addLast(aux2)
                         lanza = 0
                         //PasarTurno()
-                        dibujarCartas()
-                        imprimirTextos()
 
                     }
                     if(cartaSelec!!.number==13){
@@ -185,20 +182,19 @@ class MainActivity : AppCompatActivity() {
                         var aux = aTurno[0]
                         aTurno.removeFromStart(1)
                         aTurno.addLast(aux)
-                        dibujarCartas()
-                        imprimirTextos()
+
 
                     }
+
+                    imprimirTextos()
+                    dibujarCartas()
                     PasarTurno()
                     robo++
                     RobarCarta()
                 }else{
-
                     Toast.makeText(
                         this@MainActivity,
-                        "La carta " + numSelec + " " +paloSelec + " no coincide", Toast.LENGTH_SHORT).show()
-                }
-            }
+                        "La carta " + numSelec + " " +paloSelec + " no coincide", Toast.LENGTH_SHORT).show()}}
         })
     }
 
