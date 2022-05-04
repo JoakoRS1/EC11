@@ -168,10 +168,11 @@ class MainActivity : AppCompatActivity() {
                         aTurno.addLast(aux2)
                         lanza = 0
                         robo = 0
+                        contJugada=0
+                        contnum=0
                         //PasarTurno()
                         dibujarCartas()
                         imprimirTextos()
-
                     }
                     if(cartaSelec!!.number==13){
                         for (i in 0..2){
