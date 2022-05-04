@@ -195,11 +195,7 @@ class MainActivity : AppCompatActivity() {
                         this@MainActivity,
                         "PASA TURNO", Toast.LENGTH_SHORT).show()
                 }
-                else {
-
-                    robo++
-                    RobarCarta()
-                }else{
+                else{
                     Toast.makeText(
                         this@MainActivity,
                         "La carta " + numSelec + " " +paloSelec + " no coincide", Toast.LENGTH_SHORT).show()}}
