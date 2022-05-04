@@ -152,6 +152,12 @@ class MainActivity : AppCompatActivity() {
                     jugadores[aTurno[0]].subMazo.remove(cartaSelec)
                     jugadores[aTurno[0]].cant--
 
+                    if(jugadores[aTurno[0]].cant ==0){
+                        jugadores.remove(jugadores[aTurno[0]])
+                        aTurno.removeFromStart(1)
+                    }
+
+
                     imprimirTextos()
                     dibujarCartas()
                     /*Toast.makeText(
@@ -186,8 +192,6 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                     }
-
-
 
                     contJugada++
 
@@ -300,7 +304,7 @@ class MainActivity : AppCompatActivity() {
     fun RobarCarta(){
         val bRobar = findViewById<Button>(R.id.bRobar)
         bRobar.isEnabled = true
-        if(robo<1 && contJugada==0){
+        if(robo<1 && contJugada==0 && jugadores[aTurno[0]].cant >0){
             bRobar.setOnClickListener{
                 val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
                 if(Mazo.isNotEmpty()){
