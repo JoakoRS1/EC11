@@ -173,7 +173,6 @@ class MainActivity : AppCompatActivity() {
                         //PasarTurno()
                         dibujarCartas()
                         imprimirTextos()
-
                     }
                     if(cartaSelec!!.number==13){
                         for (i in 0..2){
