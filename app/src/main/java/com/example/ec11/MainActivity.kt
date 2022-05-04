@@ -193,7 +193,11 @@ class MainActivity : AppCompatActivity() {
                         contJugada++
                     }
                     PasarTurno()
-                }else if(contJugada==1&& (numSelec == numeroM || paloSelec == paloM)){
+                    dibujarCartas()
+                    imprimirTextos()
+                }
+
+                else if(contJugada==1&& (numSelec == numeroM || paloSelec == paloM)){
                     Toast.makeText(
                         this@MainActivity,
                         "PASA TURNO", Toast.LENGTH_SHORT).show()
