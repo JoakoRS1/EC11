@@ -2,7 +2,10 @@ package com.example.ec11
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.collection.CircularIntArray
 import androidx.core.view.drawToBitmap
@@ -232,7 +235,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun RobarCarta(){
-        val bRobar = findViewById<ImageView>(R.id.bRobar);
+        val bRobar = findViewById<Button>(R.id.bRobar);
         bRobar.setOnClickListener{
             val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
             if(Mazo.isNotEmpty()){
@@ -297,7 +300,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         InicializaJuego()
         DuranteJuego()
     }
