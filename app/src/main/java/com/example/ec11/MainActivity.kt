@@ -295,7 +295,7 @@ class MainActivity : AppCompatActivity() {
     fun RobarCarta(){
         val bRobar = findViewById<Button>(R.id.bRobar)
         bRobar.isEnabled = true
-        if(robo<1){
+        if(robo<1 && contJugada==0){
             bRobar.setOnClickListener{
                 val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
                 if(Mazo.isNotEmpty()){
@@ -316,8 +316,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(
                         this@MainActivity,
                         "No hay cartas", Toast.LENGTH_SHORT).show()
-                    Log.i("ROBAR",pos.toString() + " Largo: "+Mesa.size)
-                    Log.i("ROBAR", " Mazo: "+Mazo.size)
+
 
                     /* var contador = 0
                      while (Mesa.size<=1){
@@ -330,6 +329,11 @@ class MainActivity : AppCompatActivity() {
                      shuffle(Mazo,Mazo.size)*/
                 }}
 
+        }
+        else if(contJugada==1){
+            Log.i("ROBAR","NO SE PUEDE ROBAR")
+
+            bRobar.isEnabled = false
         }
         else{
             bRobar.isEnabled = false
