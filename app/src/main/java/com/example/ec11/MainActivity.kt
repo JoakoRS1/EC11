@@ -200,7 +200,7 @@ class MainActivity : AppCompatActivity() {
                     Log.i("Jugada","If Bloqueo")
                     Toast.makeText(
                         this@MainActivity,
-                        "PASA TURNO", Toast.LENGTH_SHORT).show()
+                        "Terminó tu turno", Toast.LENGTH_SHORT).show()
 
                 }
                 else if(contJugada==1 && (numSelec == numeroM )){
