@@ -138,6 +138,7 @@ class MainActivity : AppCompatActivity() {
                     this@MainActivity, "numero Sel: " + numSelec, Toast.LENGTH_SHORT).show()*/
 
                 if ((numSelec == numeroM || paloSelec == paloM)&& contJugada==0){
+                    contJugada++
                     unaCarta()
                     Mesa.add(cartaSelec)
                     val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
@@ -189,7 +190,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-                    contJugada++
+
 
                     PasarTurno()
                     dibujarCartas()
