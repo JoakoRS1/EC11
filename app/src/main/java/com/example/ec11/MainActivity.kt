@@ -268,7 +268,6 @@ class MainActivity : AppCompatActivity() {
                          Log.i("ROBAR", " se agregar al Mazo: "+Mazo[contador].number)
                          Mesa.removeAt(contador)
                          contador++
-
                      }
                      pos=0
                      shuffle(Mazo,Mazo.size)*/
