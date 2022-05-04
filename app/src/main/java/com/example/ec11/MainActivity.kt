@@ -179,7 +179,6 @@ class MainActivity : AppCompatActivity() {
                                     "No hay cartas", Toast.LENGTH_SHORT).show()
                             }
                         }
-
                     }
                     PasarTurno()
                     if (paloSelec == paloM && numSelec != numeroM){
