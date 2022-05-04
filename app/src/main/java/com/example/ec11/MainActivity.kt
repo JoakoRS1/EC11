@@ -222,28 +222,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun RobarCarta(){
-        val bRobar = findViewById<Button>(R.id.bRobar);
+        val bRobar = findViewById<Button>(R.id.bRobar)
+
+
+        if(robo<1){bRobar.isEnabled = false}
+
         bRobar.setOnClickListener{
             val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
             if(Mazo.isNotEmpty()){
             jugadores[aTurno[0]].subMazo.add(agregarCarta())
             jugadores[aTurno[0]].cant++
-
+                robo++
             Toast.makeText(
                 this@MainActivity,
                 "Se robó carta", Toast.LENGTH_SHORT).show()
 
             dibujarCartas()
             imprimirTextos()
-                lanza++
-                PasarTurno()
-            }
+            lanza++
+            PasarTurno()}
             else{
                 Toast.makeText(
                     this@MainActivity,
                     "No hay cartas", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 
 
