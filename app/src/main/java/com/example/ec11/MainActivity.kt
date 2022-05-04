@@ -185,7 +185,7 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                     }
-                    PasarTurno()
+
                     if (numSelec == numeroM){
                         numAux = numeroM
                         contnum++
@@ -193,7 +193,8 @@ class MainActivity : AppCompatActivity() {
                     if (paloSelec == paloM && numSelec != numeroM && contnum!=0){
                         contJugada++
                     }
-                }else if(contJugada!=0 && (numSelec == numeroM || paloSelec == paloM)){
+                    PasarTurno()
+                }else if(contJugada==1&& (numSelec == numeroM || paloSelec == paloM)){
                     Toast.makeText(
                         this@MainActivity,
                         "PASA TURNO", Toast.LENGTH_SHORT).show()
