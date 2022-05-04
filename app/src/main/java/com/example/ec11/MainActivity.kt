@@ -2,10 +2,7 @@ package com.example.ec11
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.collection.CircularIntArray
 import androidx.core.view.drawToBitmap
@@ -222,7 +219,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun RobarCarta(){
-        val bRobar = findViewById<Button>(R.id.bRobar);
+        val bRobar = findViewById<ImageView>(R.id.bRobar);
         bRobar.setOnClickListener{
             val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
             if(Mazo.isNotEmpty()){
@@ -236,7 +233,8 @@ class MainActivity : AppCompatActivity() {
             dibujarCartas()
             imprimirTextos()
                 lanza++
-                PasarTurno()}
+                PasarTurno()
+            }
             else{
                 Toast.makeText(
                     this@MainActivity,
