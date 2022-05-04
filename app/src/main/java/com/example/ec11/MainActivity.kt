@@ -145,9 +145,6 @@ class MainActivity : AppCompatActivity() {
                     pos++
                     lanza++
 
-
-                    Log.i("MESA",lanza.toString() )
-
                     jugadores[aTurno[0]].subMazo.remove(cartaSelec)
                     jugadores[aTurno[0]].cant--
 
@@ -183,7 +180,7 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                     }
-                    PasarTurno()
+
                     if (paloSelec == paloM && numSelec != numeroM){
                         var aux = aTurno[0]
                         aTurno.removeFromStart(1)
@@ -192,7 +189,9 @@ class MainActivity : AppCompatActivity() {
                         imprimirTextos()
 
                     }
-
+                    PasarTurno()
+                    robo++
+                    RobarCarta()
                 }else{
 
                     Toast.makeText(
@@ -228,49 +227,56 @@ class MainActivity : AppCompatActivity() {
                 aTurno.removeFromStart(1)
                 aTurno.addLast(aux)
                 lanza = 0
+                robo = 0
                 bPasar.isEnabled = false
                 dibujarCartas()
+                RobarCarta()
                 imprimirTextos()}
         }
     }
 
     fun RobarCarta(){
         val bRobar = findViewById<Button>(R.id.bRobar)
+        bRobar.isEnabled = true
+        if(robo<1){
+            bRobar.setOnClickListener{
+                val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
+                if(Mazo.isNotEmpty()){
+                    jugadores[aTurno[0]].subMazo.add(agregarCarta())
+                    jugadores[aTurno[0]].cant++
+                    robo++
+                    bRobar.isEnabled = false
+                    Log.i("robo",robo.toString() )
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Se robó carta", Toast.LENGTH_SHORT).show()
 
-        if(robo<1){bRobar.isEnabled = false}
+                    dibujarCartas()
+                    imprimirTextos()
+                    lanza++
+                    PasarTurno()}
+                else{
+                    Toast.makeText(
+                        this@MainActivity,
+                        "No hay cartas", Toast.LENGTH_SHORT).show()
+                    Log.i("ROBAR",pos.toString() + " Largo: "+Mesa.size)
+                    Log.i("ROBAR", " Mazo: "+Mazo.size)
 
-        bRobar.setOnClickListener{
-            val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
-            if(Mazo.isNotEmpty()){
-            jugadores[aTurno[0]].subMazo.add(agregarCarta())
-            jugadores[aTurno[0]].cant++
-                robo++
-            Toast.makeText(
-                this@MainActivity,
-                "Se robó carta", Toast.LENGTH_SHORT).show()
+                    /* var contador = 0
+                     while (Mesa.size<=1){
+                         Mazo.add(Mesa[contador])
+                         Log.i("ROBAR", " se agregar al Mazo: "+Mazo[contador].number)
+                         Mesa.removeAt(contador)
+                         contador++
 
-            dibujarCartas()
-            imprimirTextos()
-            lanza++
-            PasarTurno()}
-            else{
-                Toast.makeText(
-                    this@MainActivity,
-                    "No hay cartas", Toast.LENGTH_SHORT).show()
-                Log.i("ROBAR",pos.toString() + " Largo: "+Mesa.size)
-                Log.i("ROBAR", " Mazo: "+Mazo.size)
+                     }
+                     pos=0
+                     shuffle(Mazo,Mazo.size)*/
+                }}
 
-               /* var contador = 0
-                while (Mesa.size<=1){
-                    Mazo.add(Mesa[contador])
-                    Log.i("ROBAR", " se agregar al Mazo: "+Mazo[contador].number)
-                    Mesa.removeAt(contador)
-                    contador++
-
-                }
-                pos=0
-                shuffle(Mazo,Mazo.size)*/
-            }
+        }
+        else{
+            bRobar.isEnabled = false
         }
 
     }
