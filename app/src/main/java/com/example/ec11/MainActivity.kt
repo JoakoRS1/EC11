@@ -186,28 +186,76 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
 
-                    if (numSelec == numeroM){
-                        numAux = numeroM
-                        contnum++
-                    }
-                    if (paloSelec == paloM && numSelec != numeroM && contnum!=0){
-                        contJugada++
-                    }
+
+
+                    contJugada++
+
                     PasarTurno()
                     dibujarCartas()
                     imprimirTextos()
                 }
 
-                else if(contJugada==1&& (numSelec == numeroM || paloSelec == paloM)){
+                else if(contJugada==1 && (paloSelec == paloM)){
+                    Log.i("Jugada","If Bloqueo")
                     Toast.makeText(
                         this@MainActivity,
                         "PASA TURNO", Toast.LENGTH_SHORT).show()
+
+                }
+                else if(contJugada==1 && (numSelec == numeroM )){
+                    unaCarta()
+                    Mesa.add(cartaSelec)
+                    val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
+                    cartaMesa.removeAllViews()
+                    cartaMesa.addView(Mesa[pos])
+                    pos++
+                    lanza++
+
+
+                    Log.i("MESA",lanza.toString() )
+
+                    jugadores[aTurno[0]].subMazo.remove(cartaSelec)
+                    jugadores[aTurno[0]].cant--
+
+                    imprimirTextos()
+                    dibujarCartas()
+                    /*Toast.makeText(
+                        this@MainActivity, "carta igual a mesa", Toast.LENGTH_SHORT).show()*/
+
+                    //agregar a la mesa
+
+                    if (cartaSelec!!.number== 11){
+
+                        var aux = aTurno[0]
+                        var aux2 = aTurno[1]
+                        aTurno.removeFromStart(2)
+                        aTurno.addLast(aux)
+                        aTurno.addLast(aux2)
+                        lanza = 0
+                        //PasarTurno()
+                        dibujarCartas()
+                        imprimirTextos()
+
+                    }
+                    if(cartaSelec!!.number==13){
+                        for (i in 0..2){
+                            if(Mazo.isNotEmpty()){
+                                jugadores[aTurno[1]].subMazo.add(agregarCarta())
+                                jugadores[aTurno[1]].cant++}
+                            else{
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    "No hay cartas", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
                 }
                 else {
                     Toast.makeText(
                         this@MainActivity,
                         "La carta " + numSelec + " " +paloSelec + " no coincide", Toast.LENGTH_SHORT).show()
                 }
+
             }
         })
     }
@@ -236,6 +284,8 @@ class MainActivity : AppCompatActivity() {
                 aTurno.addLast(aux)
                 lanza = 0
                 robo = 0
+                contJugada=0
+                contnum=0
                 bPasar.isEnabled = false
                 dibujarCartas()
                 RobarCarta()
@@ -246,7 +296,7 @@ class MainActivity : AppCompatActivity() {
     fun RobarCarta(){
         val bRobar = findViewById<Button>(R.id.bRobar)
         bRobar.isEnabled = true
-        if(robo<1){
+        if(robo<1 && contJugada==0){
             bRobar.setOnClickListener{
                 val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
                 if(Mazo.isNotEmpty()){
@@ -267,8 +317,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(
                         this@MainActivity,
                         "No hay cartas", Toast.LENGTH_SHORT).show()
-                    Log.i("ROBAR",pos.toString() + " Largo: "+Mesa.size)
-                    Log.i("ROBAR", " Mazo: "+Mazo.size)
+
 
                     /* var contador = 0
                      while (Mesa.size<=1){
@@ -281,6 +330,11 @@ class MainActivity : AppCompatActivity() {
                      shuffle(Mazo,Mazo.size)*/
                 }}
 
+        }
+        else if(contJugada==1){
+            Log.i("ROBAR","NO SE PUEDE ROBAR")
+
+            bRobar.isEnabled = false
         }
         else{
             bRobar.isEnabled = false
