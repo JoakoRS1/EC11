@@ -237,7 +237,6 @@ class MainActivity : AppCompatActivity() {
     fun RobarCarta(){
         val bRobar = findViewById<Button>(R.id.bRobar)
 
-
         if(robo<1){bRobar.isEnabled = false}
 
         bRobar.setOnClickListener{
