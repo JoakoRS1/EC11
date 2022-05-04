@@ -234,7 +234,9 @@ class MainActivity : AppCompatActivity() {
                 "Se robó carta", Toast.LENGTH_SHORT).show()
 
             dibujarCartas()
-            imprimirTextos()}
+            imprimirTextos()
+                lanza++
+                PasarTurno()}
             else{
                 Toast.makeText(
                     this@MainActivity,
