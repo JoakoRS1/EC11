@@ -187,18 +187,14 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     if (numSelec == numeroM){
-                        Log.i("Jugada","Sumo")
                         numAux = numeroM
                         contnum++
                     }
                     if (paloSelec == paloM && numSelec != numeroM && contnum!=0){
-                        Log.i("Jugada","Entro")
-
                         contJugada++
                     }
                     PasarTurno()
                 }else if(contJugada==1&& (numSelec == numeroM || paloSelec == paloM)){
-                    Log.i("Jugada","Entro al if")
                     Toast.makeText(
                         this@MainActivity,
                         "PASA TURNO", Toast.LENGTH_SHORT).show()
