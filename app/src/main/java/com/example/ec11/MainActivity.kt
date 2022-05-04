@@ -22,7 +22,9 @@ class MainActivity : AppCompatActivity() {
     var aTurno = CircularIntArray()
     private var lanza = 0
     private var robo = 0
-    var contpalo =0
+    var contnum =0
+    var numAux =0
+    var contJugada = 0
 
     //var adapter = CustomAdapter(mutableListOf<Carta>())
 
@@ -130,20 +132,23 @@ class MainActivity : AppCompatActivity() {
 
                 var numSelec = cartaSelec.number
                 var paloSelec = cartaSelec.palo
-                var contnum =0
+
 
                 //leer carta en mesa
                 /*Toast.makeText(
                     this@MainActivity, "numero Sel: " + numSelec, Toast.LENGTH_SHORT).show()*/
 
-                if (numSelec == numeroM || paloSelec == paloM){
-
+                if ((numSelec == numeroM || paloSelec == paloM)&& contJugada==0){
+                    unaCarta()
                     Mesa.add(cartaSelec)
                     val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
                     cartaMesa.removeAllViews()
                     cartaMesa.addView(Mesa[pos])
                     pos++
                     lanza++
+
+
+                    Log.i("MESA",lanza.toString() )
 
                     jugadores[aTurno[0]].subMazo.remove(cartaSelec)
                     jugadores[aTurno[0]].cant--
@@ -178,17 +183,21 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
 
-                    if (paloSelec == paloM && numSelec != numeroM){
-                        var aux = aTurno[0]
-                        aTurno.removeFromStart(1)
-                        aTurno.addLast(aux)
-
-
+                    if (numSelec == numeroM){
+                        numAux = numeroM
+                        contnum++
                     }
-
-                    imprimirTextos()
-                    dibujarCartas()
+                    if (paloSelec == paloM && numSelec != numeroM && contnum!=0){
+                        contJugada++
+                    }
                     PasarTurno()
+                }else if(contJugada==1&& (numSelec == numeroM || paloSelec == paloM)){
+                    Toast.makeText(
+                        this@MainActivity,
+                        "PASA TURNO", Toast.LENGTH_SHORT).show()
+                }
+                else {
+
                     robo++
                     RobarCarta()
                 }else{
@@ -215,9 +224,7 @@ class MainActivity : AppCompatActivity() {
             bPasar.setOnClickListener{
 
                 val a= findViewById<TextView>(R.id.JSigTotal)//PRUEBA
-                /*Toast.makeText(
-                    this@MainActivity,
-                    "Se pasó turno", Toast.LENGTH_SHORT).show()*/
+
 
                 var aux = aTurno[0]
                 aTurno.removeFromStart(1)
@@ -308,6 +315,7 @@ class MainActivity : AppCompatActivity() {
         DuranteJuego()
     }
     fun unaCarta()  {
+        Log.i("UnaCarta",jugadores[0].cant.toString() )
         for(i in 0..2){
             if(jugadores[i].cant == 1){
                 val num = i +1
