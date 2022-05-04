@@ -167,6 +167,7 @@ class MainActivity : AppCompatActivity() {
                         aTurno.addLast(aux)
                         aTurno.addLast(aux2)
                         lanza = 0
+                        robo = 0
                         //PasarTurno()
                         dibujarCartas()
                         imprimirTextos()
