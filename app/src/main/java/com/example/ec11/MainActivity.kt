@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     var aTurno = CircularIntArray()
     private var lanza = 0
     private var robo = 0
+    var contpalo =0
 
     //var adapter = CustomAdapter(mutableListOf<Carta>())
 
@@ -126,6 +127,8 @@ class MainActivity : AppCompatActivity() {
 
                 var numSelec = cartaSelec.number
                 var paloSelec = cartaSelec.palo
+                var contnum =0
+
                 //leer carta en mesa
                 /*Toast.makeText(
                     this@MainActivity, "numero Sel: " + numSelec, Toast.LENGTH_SHORT).show()*/
@@ -139,10 +142,12 @@ class MainActivity : AppCompatActivity() {
                     pos++
                     lanza++
 
+
                     Log.i("MESA",lanza.toString() )
 
                     jugadores[aTurno[0]].subMazo.remove(cartaSelec)
                     jugadores[aTurno[0]].cant--
+
                     imprimirTextos()
                     dibujarCartas()
                     /*Toast.makeText(
@@ -177,6 +182,15 @@ class MainActivity : AppCompatActivity() {
 
                     }
                     PasarTurno()
+                    if (paloSelec == paloM && numSelec != numeroM){
+                        var aux = aTurno[0]
+                        aTurno.removeFromStart(1)
+                        aTurno.addLast(aux)
+                        dibujarCartas()
+                        imprimirTextos()
+
+                    }
+
                 }else{
 
                     Toast.makeText(
@@ -239,6 +253,19 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(
                     this@MainActivity,
                     "No hay cartas", Toast.LENGTH_SHORT).show()
+                Log.i("ROBAR",pos.toString() + " Largo: "+Mesa.size)
+                Log.i("ROBAR", " Mazo: "+Mazo.size)
+
+               /* var contador = 0
+                while (Mesa.size<=1){
+                    Mazo.add(Mesa[contador])
+                    Log.i("ROBAR", " se agregar al Mazo: "+Mazo[contador].number)
+                    Mesa.removeAt(contador)
+                    contador++
+
+                }
+                pos=0
+                shuffle(Mazo,Mazo.size)*/
             }
         }
     }
