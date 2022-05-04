@@ -167,6 +167,8 @@ class MainActivity : AppCompatActivity() {
                         aTurno.addLast(aux)
                         aTurno.addLast(aux2)
                         lanza = 0
+                        contJugada=0
+                        contnum=0
                         //PasarTurno()
                         dibujarCartas()
                         imprimirTextos()
@@ -231,6 +233,8 @@ class MainActivity : AppCompatActivity() {
                         aTurno.addLast(aux)
                         aTurno.addLast(aux2)
                         lanza = 0
+                        contJugada=0
+                        contnum=0
                         //PasarTurno()
                         dibujarCartas()
                         imprimirTextos()
