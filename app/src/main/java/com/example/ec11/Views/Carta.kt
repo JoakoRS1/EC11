@@ -77,14 +77,16 @@ class Carta: View {
         var mPaint2=mPaint
 
         mPaint2.textAlign= Paint.Align.RIGHT
-
         canvas!!.drawText(numeroStr,anchoCarta * 0.9f,mHeight*0.95f,mPaint2)
     }
     private fun drawSymbols(canvas: Canvas?){
 
         var symbol: Bitmap?= null
 
-        var rect = RectF(anchoCarta*0.1f, mHeight * 0.25f, anchoCarta * 0.9f, mHeight * 0.75f)
+        var rect = RectF(anchoCarta*0.1f,
+            mHeight * 0.25f,
+            anchoCarta * 0.9f,
+            mHeight * 0.75f)
         if (palo=="corazon") {
             symbol= BitmapFactory.decodeResource(resources, R.drawable.corazon)
         }
