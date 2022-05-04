@@ -120,7 +120,6 @@ class MainActivity : AppCompatActivity() {
 
         adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
-
                 var MazoJugador= jugadores[aTurno[0]].subMazo
                 var cartaSelec = MazoJugador[position]
                 /*Toast.makeText(
