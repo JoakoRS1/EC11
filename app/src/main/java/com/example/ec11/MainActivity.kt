@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
 
                 if ((numSelec == numeroM || paloSelec == paloM)&& contJugada==0){
                     contJugada++
-                    unaCarta()
+
                     Mesa.add(cartaSelec)
                     val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
                     cartaMesa.removeAllViews()
@@ -153,6 +153,7 @@ class MainActivity : AppCompatActivity() {
                     jugadores[aTurno[0]].subMazo.remove(cartaSelec)
                     jugadores[aTurno[0]].cant--
 
+                    unaCarta()
                     imprimirTextos()
                     dibujarCartas()
                     /*Toast.makeText(
@@ -205,7 +206,7 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 else if(contJugada==1 && (numSelec == numeroM )){
-                    unaCarta()
+
                     Mesa.add(cartaSelec)
                     val cartaMesa = findViewById<LinearLayout> (R.id.cartaMesa)
                     cartaMesa.removeAllViews()
@@ -218,7 +219,7 @@ class MainActivity : AppCompatActivity() {
 
                     jugadores[aTurno[0]].subMazo.remove(cartaSelec)
                     jugadores[aTurno[0]].cant--
-
+                    unaCarta()
                     imprimirTextos()
                     dibujarCartas()
                     /*Toast.makeText(
