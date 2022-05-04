@@ -199,7 +199,6 @@ class MainActivity : AppCompatActivity() {
                         "PASA TURNO", Toast.LENGTH_SHORT).show()
                 }
                 else {
-
                     Toast.makeText(
                         this@MainActivity,
                         "La carta " + numSelec + " " +paloSelec + " no coincide", Toast.LENGTH_SHORT).show()
